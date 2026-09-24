@@ -14,6 +14,7 @@ import {
   Menu,
   X,
   Shield,
+  Flame,
 } from 'lucide-react';
 
 const AdminSidebar = () => {
@@ -25,6 +26,7 @@ const AdminSidebar = () => {
     { label: 'Auctions', path: '/admin/auctions', icon: Gavel },
     { label: 'Products', path: '/admin/products', icon: Package },
     { label: 'Users', path: '/admin/users', icon: Users },
+    { label: 'Marketing & FOMO', path: '/admin/marketing', icon: Flame },
     { label: 'Memberships', path: '/admin/memberships', icon: Sparkles },
     { label: 'Payments', path: '/admin/payments', icon: DollarSign },
     { label: 'Orders', path: '/admin/orders', icon: ShoppingBag },

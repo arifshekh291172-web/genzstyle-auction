@@ -15,6 +15,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const marketingRoutes = require('./routes/marketingRoutes');
 
 const app = express();
 
@@ -88,6 +89,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/marketing', marketingRoutes);
 
 // Static frontend serving for production deployment
 const path = require('path');

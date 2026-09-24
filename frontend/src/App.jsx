@@ -9,6 +9,8 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import MobileBottomNav from './components/common/MobileBottomNav';
 import AdminSidebar from './components/admin/AdminSidebar';
+import UrgencyTicker from './components/marketing/UrgencyTicker';
+import LiveMarketingToaster from './components/marketing/LiveMarketingToaster';
 
 // Public & Collector Pages
 import Home from './pages/Home';
@@ -39,6 +41,7 @@ import AdminMemberships from './pages/admin/AdminMemberships';
 import AdminPayments from './pages/admin/AdminPayments';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminMarketing from './pages/admin/AdminMarketing';
 
 // Protected Route Guard for Collectors
 const ProtectedRoute = ({ children }) => {
@@ -105,6 +108,7 @@ const AppLayout = () => {
               <Route path="/admin/auctions/create" element={<AdminCreateAuction />} />
               <Route path="/admin/products" element={<AdminProducts />} />
               <Route path="/admin/users" element={<AdminUsers />} />
+              <Route path="/admin/marketing" element={<AdminMarketing />} />
               <Route path="/admin/memberships" element={<AdminMemberships />} />
               <Route path="/admin/payments" element={<AdminPayments />} />
               <Route path="/admin/orders" element={<AdminOrders />} />
@@ -119,6 +123,7 @@ const AppLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-luxury-black text-white">
+      <UrgencyTicker />
       <Navbar />
       <main className="flex-1">
         <Routes>
@@ -179,6 +184,7 @@ const AppLayout = () => {
       </main>
       <Footer />
       <MobileBottomNav />
+      <LiveMarketingToaster />
     </div>
   );
 };

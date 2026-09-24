@@ -18,6 +18,7 @@ import BidHistory from '../components/auction/BidHistory';
 import CountdownTimer from '../components/auction/CountdownTimer';
 import StickyBidBar from '../components/auction/StickyBidBar';
 import Badge from '../components/common/Badge';
+import ShareModal from '../components/marketing/ShareModal';
 import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
 import api from '../api/client';
@@ -33,6 +34,7 @@ const AuctionDetail = () => {
   const [loading, setLoading] = useState(true);
   const [bidding, setBidding] = useState(false);
   const [joining, setJoining] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const [bidError, setBidError] = useState(null);
   const [justOutbid, setJustOutbid] = useState(false);
   const [winnerInfo, setWinnerInfo] = useState(null);
@@ -242,18 +244,12 @@ const AuctionDetail = () => {
         <div className="flex items-center gap-2 sm:gap-3">
           <Badge status={auction.status} size="sm" />
           <button
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({ title: product.name, url: window.location.href });
-              } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Drop link copied to clipboard!');
-              }
-            }}
-            className="p-1.5 sm:p-2 rounded-lg bg-luxury-surface border border-luxury-border text-gray-400 hover:text-white transition"
+            onClick={() => setIsShareOpen(true)}
+            className="p-1.5 sm:p-2 rounded-lg bg-luxury-surface border border-luxury-border text-luxury-gold hover:text-white transition flex items-center gap-1.5 text-xs font-bold"
             aria-label="Share drop"
           >
             <Share2 className="w-4 h-4" />
+            <span className="hidden xs:inline">SHARE DROP</span>
           </button>
         </div>
       </div>
@@ -446,6 +442,15 @@ const AuctionDetail = () => {
           />
         </div>
       )}
+
+      {/* Viral Referral Share Modal */}
+      <ShareModal
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        auctionTitle={product.name}
+        currentPrice={auction.currentBid || auction.startingBid}
+        auctionUrl={window.location.href}
+      />
     </div>
   );
 };
