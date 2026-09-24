@@ -36,9 +36,9 @@ const MyAuctions = () => {
   }, [activeTab]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-mobile-nav">
-      <div className="pb-8 border-b border-luxury-border/60">
-        <h1 className="text-3xl md:text-5xl font-black text-white uppercase font-display">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-12 pb-mobile-nav">
+      <div className="pb-6 sm:pb-8 border-b border-luxury-border/60">
+        <h1 className="text-2xl xs:text-3xl md:text-5xl font-black text-white uppercase font-display">
           MY JOINED AUCTIONS
         </h1>
         <p className="text-xs md:text-sm text-gray-400 mt-1">
@@ -47,7 +47,7 @@ const MyAuctions = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-3 py-6 border-b border-luxury-border/60 overflow-x-auto scrollbar-none">
+      <div className="flex items-center gap-2 sm:gap-3 py-4 sm:py-6 border-b border-luxury-border/60 overflow-x-auto scrollbar-none -mx-3 px-3 sm:mx-0 sm:px-0">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -55,7 +55,7 @@ const MyAuctions = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition shrink-0 ${
+              className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition shrink-0 ${
                 isActive
                   ? 'bg-luxury-gold text-black shadow-luxury-gold'
                   : 'bg-luxury-surface text-gray-400 hover:text-white border border-luxury-border/60'

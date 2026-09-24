@@ -228,18 +228,18 @@ const AuctionDetail = () => {
   const isFull = participantCount >= participantLimit;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 pb-mobile-nav">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10 pb-28 sm:pb-mobile-nav">
       {/* Breadcrumb / Back button */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
         <Link
           to="/auctions"
-          className="flex items-center gap-2 text-xs font-semibold text-gray-400 hover:text-white transition"
+          className="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-gray-400 hover:text-white transition"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to All Drops</span>
+          <ArrowLeft className="w-4 h-4 shrink-0" />
+          <span className="truncate">Back to All Drops</span>
         </Link>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Badge status={auction.status} size="sm" />
           <button
             onClick={() => {
@@ -250,7 +250,7 @@ const AuctionDetail = () => {
                 alert('Drop link copied to clipboard!');
               }
             }}
-            className="p-2 rounded-lg bg-luxury-surface border border-luxury-border text-gray-400 hover:text-white transition"
+            className="p-1.5 sm:p-2 rounded-lg bg-luxury-surface border border-luxury-border text-gray-400 hover:text-white transition"
             aria-label="Share drop"
           >
             <Share2 className="w-4 h-4" />
@@ -259,31 +259,31 @@ const AuctionDetail = () => {
       </div>
 
       {/* Main Layout Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
         {/* Left Column: Visual Product Gallery (7 cols) */}
-        <div className="lg:col-span-7 flex flex-col gap-6">
+        <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
           <ImageGallery images={product.images} productName={product.name} />
 
           {/* Product Specifications & Details */}
-          <div className="bg-luxury-surface/60 border border-luxury-border/80 rounded-2xl p-6">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-luxury-border/60">
+          <div className="bg-luxury-surface/60 border border-luxury-border/80 rounded-2xl p-4 sm:p-6">
+            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 pb-2 border-b border-luxury-border/60">
               Piece Specification &amp; Provenance
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs mb-4 sm:mb-6">
               <div>
-                <span className="text-gray-500 uppercase text-[10px] block">Brand</span>
+                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Brand</span>
                 <span className="font-semibold text-gray-200">{product.brand || 'Luxury'}</span>
               </div>
               <div>
-                <span className="text-gray-500 uppercase text-[10px] block">Size</span>
+                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Size</span>
                 <span className="font-semibold text-gray-200">{product.size || 'M'}</span>
               </div>
               <div>
-                <span className="text-gray-500 uppercase text-[10px] block">Color</span>
+                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Color</span>
                 <span className="font-semibold text-gray-200">{product.color || 'Black'}</span>
               </div>
               <div>
-                <span className="text-gray-500 uppercase text-[10px] block">Condition</span>
+                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Condition</span>
                 <span className="font-semibold text-emerald-400">{product.condition || 'Brand New'}</span>
               </div>
             </div>
@@ -295,27 +295,27 @@ const AuctionDetail = () => {
         </div>
 
         {/* Right Column: Live Bidding Console (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
+        <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
           {/* Header Card with Style ID & Name */}
-          <div className="bg-luxury-surface/90 border border-luxury-border rounded-2xl p-6 shadow-card-dark">
+          <div className="bg-luxury-surface/90 border border-luxury-border rounded-2xl p-4 sm:p-6 shadow-card-dark">
             <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-xs font-mono font-bold text-luxury-gold tracking-widest uppercase">
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-luxury-gold tracking-widest uppercase">
                 STYLE ID: {product.styleId || 'GZS-ARCHIVE'}
               </span>
-              <span className="text-[11px] font-semibold text-gray-400 uppercase">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-gray-400 uppercase">
                 {product.category}
               </span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl font-black text-white leading-tight font-display mb-4">
+            <h1 className="text-lg sm:text-2xl font-black text-white leading-tight font-display mb-3 sm:mb-4">
               {product.name}
             </h1>
 
             {/* Winner Announcement Banner if Ended */}
             {isPendingPayment && (
-              <div className="p-4 rounded-xl bg-luxury-gold/10 border border-luxury-gold/40 text-center mb-6 animate-fade-in">
-                <Crown className="w-6 h-6 text-luxury-gold mx-auto mb-1" />
-                <h4 className="font-bold text-white text-sm uppercase tracking-wide">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-luxury-gold/10 border border-luxury-gold/40 text-center mb-4 sm:mb-6 animate-fade-in">
+                <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-luxury-gold mx-auto mb-1" />
+                <h4 className="font-bold text-white text-xs sm:text-sm uppercase tracking-wide">
                   DROP CONCLUDED
                 </h4>
                 <p className="text-xs text-gray-300 mt-1">
@@ -328,32 +328,32 @@ const AuctionDetail = () => {
             )}
 
             {/* Real-time Bid & Participant Metric Grid */}
-            <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-luxury-card/70 border border-luxury-border/60 mb-6">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 p-3 sm:p-4 rounded-xl bg-luxury-card/70 border border-luxury-border/60 mb-4 sm:mb-6">
               <div>
-                <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
                   {isLive ? 'CURRENT HIGHEST BID' : 'STARTING BID'}
                 </span>
-                <span className="font-display font-black text-2xl md:text-3xl text-white">
+                <span className="font-display font-black text-lg xs:text-xl md:text-3xl text-white truncate block">
                   ₹{auction.currentBid.toLocaleString('en-IN')}
                 </span>
               </div>
 
               <div>
-                <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
                   COLLECTORS JOINED
                 </span>
-                <span className="font-display font-black text-2xl md:text-3xl text-luxury-gold flex items-center gap-1.5">
-                  <Users className="w-5 h-5 shrink-0" />
-                  {participantCount} <span className="text-sm text-gray-500 font-normal">/ {participantLimit}</span>
+                <span className="font-display font-black text-lg xs:text-xl md:text-3xl text-luxury-gold flex items-center gap-1 sm:gap-1.5 truncate">
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <span>{participantCount}</span> <span className="text-xs sm:text-sm text-gray-500 font-normal">/ {participantLimit}</span>
                 </span>
               </div>
             </div>
 
             {/* Countdown / Auction Timer */}
-            <div className="p-3.5 rounded-xl border border-luxury-border/60 bg-luxury-surface flex items-center justify-between mb-6">
-              <span className="text-xs text-gray-400 uppercase font-semibold flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-luxury-gold" />
-                {isLive ? 'Bidding Concludes In' : 'Bidding Commences In'}
+            <div className="p-3 sm:p-3.5 rounded-xl border border-luxury-border/60 bg-luxury-surface flex items-center justify-between mb-4 sm:mb-6 gap-2">
+              <span className="text-[11px] sm:text-xs text-gray-400 uppercase font-semibold flex items-center gap-1.5 truncate">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-luxury-gold shrink-0" />
+                <span className="truncate">{isLive ? 'Concludes In' : 'Commences In'}</span>
               </span>
               <CountdownTimer
                 targetDate={isLive ? auction.endTime : auction.startTime}

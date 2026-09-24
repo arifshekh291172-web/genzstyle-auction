@@ -96,9 +96,9 @@ const AppLayout = () => {
   if (isAdminPath) {
     return (
       <AdminRoute>
-        <div className="flex bg-luxury-black min-h-screen text-white">
+        <div className="flex flex-col md:flex-row bg-luxury-black min-h-screen text-white w-full max-w-full overflow-x-hidden">
           <AdminSidebar />
-          <div className="flex-1 overflow-x-hidden flex flex-col">
+          <div className="flex-1 overflow-x-hidden flex flex-col pt-14 md:pt-0 min-w-0 w-full max-w-full">
             <Routes>
               <Route path="/admin" element={<AdminOverview />} />
               <Route path="/admin/auctions" element={<AdminAuctions />} />

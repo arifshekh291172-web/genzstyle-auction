@@ -52,14 +52,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-8 shadow-card-dark">
+    <div className="min-h-[80vh] flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12">
+      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 sm:p-8 shadow-card-dark">
         {/* Brand header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8">
           <div className="w-12 h-12 rounded-xl bg-luxury-card border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-2xl shadow-luxury-gold mx-auto mb-3">
             G
           </div>
-          <h1 className="text-2xl font-black text-white uppercase tracking-wider font-display">
+          <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider font-display">
             Collector Login
           </h1>
           <p className="text-xs text-gray-400 mt-1">
@@ -70,7 +70,7 @@ const Login = () => {
         {error && (
           <div className="mb-6 p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs flex items-center gap-2.5">
             <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
-            <div className="leading-relaxed">{error}</div>
+            <div className="leading-relaxed break-words">{error}</div>
           </div>
         )}
 

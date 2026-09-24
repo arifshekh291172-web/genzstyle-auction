@@ -69,11 +69,11 @@ const Auctions = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
       {/* Header & Search */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-luxury-border/60">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-luxury-border/60">
         <div>
-          <h1 className="text-3xl md:text-5xl font-black text-white uppercase font-display">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white uppercase font-display">
             ALL EXCLUSIVE DROPS
           </h1>
           <p className="text-xs md:text-sm text-gray-400 mt-1">
@@ -95,14 +95,14 @@ const Auctions = () => {
       </div>
 
       {/* Filter Tabs Row */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 py-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 py-4 sm:py-6">
         {/* Status Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none w-auto max-w-full">
           {statuses.map((s) => (
             <button
               key={s.value}
               onClick={() => setSelectedStatus(s.value)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition flex items-center gap-1.5 shrink-0 ${
+              className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold tracking-wider uppercase transition flex items-center gap-1.5 shrink-0 ${
                 selectedStatus === s.value
                   ? 'bg-luxury-gold text-black shadow-luxury-gold'
                   : 'bg-luxury-surface text-gray-400 hover:text-white border border-luxury-border/60'
@@ -115,12 +115,12 @@ const Auctions = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none w-auto max-w-full">
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setSelectedCategory(c)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition shrink-0 ${
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition shrink-0 ${
                 selectedCategory === c
                   ? 'text-luxury-gold bg-luxury-gold/10 border border-luxury-gold/30'
                   : 'text-gray-400 hover:text-white hover:bg-luxury-surface/50'

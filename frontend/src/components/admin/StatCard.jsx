@@ -14,22 +14,22 @@ const StatCard = ({ title, value, icon: Icon, change = null, isCurrency = false,
     : Number(value || 0).toLocaleString('en-IN');
 
   return (
-    <div className="bg-luxury-surface border border-luxury-border/80 rounded-2xl p-5 flex flex-col justify-between shadow-card-dark">
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-gray-400">
+    <div className="bg-luxury-surface border border-luxury-border/80 rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between shadow-card-dark">
+      <div className="flex items-center justify-between gap-1 mb-2.5 sm:mb-3">
+        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 truncate">
           {title}
         </span>
-        <div className={`p-2 rounded-xl border ${colorMap[color] || colorMap.gold}`}>
-          <Icon className="w-4 h-4" />
+        <div className={`p-1.5 sm:p-2 rounded-xl border shrink-0 ${colorMap[color] || colorMap.gold}`}>
+          <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </div>
       </div>
 
-      <div className="flex items-baseline justify-between">
-        <span className="font-display font-black text-2xl text-white">
+      <div className="flex items-baseline justify-between gap-1">
+        <span className="font-display font-black text-lg xs:text-xl sm:text-2xl text-white truncate">
           {formattedValue}
         </span>
         {change && (
-          <span className="text-[11px] font-semibold text-emerald-400">
+          <span className="text-[10px] sm:text-[11px] font-semibold text-emerald-400 shrink-0">
             {change}
           </span>
         )}

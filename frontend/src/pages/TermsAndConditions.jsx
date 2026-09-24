@@ -4,35 +4,35 @@ import { Link } from 'react-router-dom';
 
 const TermsAndConditions = () => {
   return (
-    <div className="min-h-screen bg-luxury-black text-gray-300 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-luxury-black text-gray-300 py-8 sm:py-12 md:py-16 px-3 sm:px-6 lg:px-8 pb-mobile-nav">
       <div className="max-w-4xl mx-auto">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-luxury-gold transition mb-8"
+          className="inline-flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-luxury-gold transition mb-6 sm:mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to Marketplace</span>
         </Link>
 
         {/* Header */}
-        <div className="border-b border-luxury-border/80 pb-8 mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-luxury-gold/30 bg-luxury-gold/10 text-luxury-gold text-xs font-mono mb-4">
-            <Scale className="w-3.5 h-3.5" />
-            <span>LEGAL OPERATING PROTOCOL & TERMS OF SERVICE</span>
+        <div className="border-b border-luxury-border/80 pb-6 sm:pb-8 mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-luxury-gold/30 bg-luxury-gold/10 text-luxury-gold text-[10px] sm:text-xs font-mono mb-4 max-w-full">
+            <Scale className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">LEGAL OPERATING PROTOCOL & TERMS OF SERVICE</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-wide font-display uppercase">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-wide font-display uppercase">
             GENZSTYLE Terms & Conditions
           </h1>
-          <p className="mt-3 text-xs sm:text-sm text-gray-400 font-mono leading-relaxed">
+          <p className="mt-3 text-[11px] sm:text-sm text-gray-400 font-mono leading-relaxed">
             Effective Date: September 2026 • Governing Law: Republic of India • Exclusive Jurisdiction: Mumbai, Maharashtra
           </p>
-          <p className="mt-2 text-xs text-luxury-gold font-mono">
+          <p className="mt-2 text-[11px] sm:text-xs text-luxury-gold font-mono leading-relaxed">
             Notice: By registering an account, purchasing an Annual Collector Passport (₹49), or participating in any auction drop, you unconditionally enter into a legally binding contract under the Indian Contract Act, 1872 and Information Technology Act, 2000.
           </p>
         </div>
 
         {/* 4 Core Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
           <div className="p-4 rounded-xl border border-luxury-border bg-luxury-card/60">
             <MapPin className="w-5 h-5 text-luxury-gold mb-2" />
             <h2 className="text-xs font-bold text-white uppercase font-mono">Mumbai Delivery Only</h2>

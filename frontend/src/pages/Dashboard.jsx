@@ -64,9 +64,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-mobile-nav">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-12 pb-mobile-nav">
       {/* Welcome Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-luxury-border/60">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 sm:pb-8 border-b border-luxury-border/60">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-bold uppercase tracking-widest text-luxury-gold">
@@ -74,7 +74,7 @@ const Dashboard = () => {
             </span>
             <Badge status={hasActiveMembership ? 'ACTIVE' : 'INACTIVE'} size="xs" />
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white uppercase font-display">
+          <h1 className="text-2xl xs:text-3xl md:text-5xl font-black text-white uppercase font-display">
             WELCOME, {user?.name?.split(' ')[0] || 'COLLECTOR'}
           </h1>
           <p className="text-xs text-gray-400 mt-1">
@@ -85,7 +85,7 @@ const Dashboard = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/auctions"
-            className="px-5 py-3 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center gap-2"
+            className="w-full sm:w-auto justify-center px-5 py-3 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center gap-2"
           >
             <Gavel className="w-4 h-4" />
             <span>BROWSE LIVE DROPS</span>
@@ -95,7 +95,7 @@ const Dashboard = () => {
 
       {/* Pending 48h Payment Action Alert */}
       {stats.pendingPayments > 0 && (
-        <div className="my-6 p-5 rounded-2xl bg-amber-950/40 border border-amber-500/50 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fade-in">
+        <div className="my-6 p-4 sm:p-5 rounded-2xl bg-amber-950/40 border border-amber-500/50 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fade-in">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-amber-500/20 text-amber-400 rounded-xl shrink-0">
               <Clock className="w-6 h-6 animate-pulse" />
@@ -119,7 +119,7 @@ const Dashboard = () => {
       )}
 
       {/* DASHBOARD CARDS GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 my-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4 my-6 sm:my-8">
         <StatCard
           title="MEMBERSHIP"
           value={hasActiveMembership ? 'ACTIVE' : 'INACTIVE'}
@@ -164,11 +164,11 @@ const Dashboard = () => {
       </div>
 
       {/* Two Column Grid: Pending Orders & Recent Bids */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 my-6 sm:my-8">
         {/* Pending Orders Box */}
-        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6">
+        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between pb-3 border-b border-luxury-border mb-4">
-            <h3 className="font-bold text-sm text-white uppercase tracking-wider flex items-center gap-2">
+            <h3 className="font-bold text-xs sm:text-sm text-white uppercase tracking-wider flex items-center gap-2">
               <ShoppingBag className="w-4 h-4 text-luxury-gold" /> Pending Drop Pickups
             </h3>
             <Link to="/orders" className="text-xs text-luxury-gold hover:underline">
@@ -185,9 +185,9 @@ const Dashboard = () => {
               {pendingOrders.map((order) => (
                 <div
                   key={order._id}
-                  className="p-4 rounded-xl bg-luxury-card border border-luxury-border/60 flex items-center justify-between gap-4"
+                  className="p-3.5 sm:p-4 rounded-xl bg-luxury-card border border-luxury-border/60 flex flex-col xs:flex-row xs:items-center justify-between gap-3"
                 >
-                  <div>
+                  <div className="min-w-0">
                     <h4 className="font-bold text-xs text-white truncate max-w-xs">
                       {order.productId?.name || 'Exclusive Piece'}
                     </h4>
@@ -197,7 +197,7 @@ const Dashboard = () => {
                   </div>
                   <Link
                     to="/orders"
-                    className="px-3.5 py-1.5 rounded-lg bg-luxury-gold text-black text-xs font-bold hover:brightness-110 transition shrink-0"
+                    className="px-3.5 py-1.5 rounded-lg bg-luxury-gold text-black text-xs font-bold hover:brightness-110 transition shrink-0 text-center"
                   >
                     Pay Now
                   </Link>
@@ -208,9 +208,9 @@ const Dashboard = () => {
         </div>
 
         {/* Recent Bids Box */}
-        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6">
+        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between pb-3 border-b border-luxury-border mb-4">
-            <h3 className="font-bold text-sm text-white uppercase tracking-wider flex items-center gap-2">
+            <h3 className="font-bold text-xs sm:text-sm text-white uppercase tracking-wider flex items-center gap-2">
               <History className="w-4 h-4 text-luxury-gold" /> Recent Bidding History
             </h3>
             <Link to="/my-auctions" className="text-xs text-luxury-gold hover:underline">
@@ -227,10 +227,10 @@ const Dashboard = () => {
               {recentBids.map((b) => (
                 <div
                   key={b._id}
-                  className="p-3 rounded-xl bg-luxury-card/60 border border-luxury-border/40 flex items-center justify-between"
+                  className="p-3 rounded-xl bg-luxury-card/60 border border-luxury-border/40 flex items-center justify-between gap-2"
                 >
-                  <div>
-                    <span className="text-xs font-bold text-gray-200 block truncate max-w-xs">
+                  <div className="min-w-0">
+                    <span className="text-xs font-bold text-gray-200 block truncate max-w-[180px] xs:max-w-xs">
                       {b.auctionId?.productId?.name || 'Archival Piece'}
                     </span>
                     <span className="text-[10px] text-gray-500 font-mono">
@@ -238,7 +238,7 @@ const Dashboard = () => {
                       {new Date(b.serverTimestamp || b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
-                  <span className="font-display font-black text-sm text-luxury-gold">
+                  <span className="font-display font-black text-sm text-luxury-gold shrink-0">
                     ₹{b.amount.toLocaleString('en-IN')}
                   </span>
                 </div>

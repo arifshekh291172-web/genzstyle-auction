@@ -57,28 +57,28 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#070709] flex flex-col justify-center py-8 sm:py-12 px-3 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
       {/* Background ambient security glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-red-950/15 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-luxury-gold/10 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[600px] max-w-full h-[350px] bg-red-950/15 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[280px] sm:w-[400px] max-w-full h-[200px] bg-luxury-gold/10 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 rounded-2xl bg-luxury-surface border border-red-500/30 flex items-center justify-center shadow-2xl shadow-red-950/40">
-            <ShieldAlert className="w-8 h-8 text-red-400" />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-luxury-surface border border-red-500/30 flex items-center justify-center shadow-2xl shadow-red-950/40">
+            <ShieldAlert className="w-7 h-7 sm:w-8 sm:h-8 text-red-400" />
           </div>
         </div>
 
-        <h1 className="text-center text-2xl font-black tracking-widest text-white uppercase font-display">
+        <h1 className="text-center text-xl sm:text-2xl font-black tracking-widest text-white uppercase font-display">
           GENZSTYLE
         </h1>
-        <p className="mt-1 text-center text-xs font-mono tracking-wider text-red-400/90 uppercase">
+        <p className="mt-1 text-center text-[10px] sm:text-xs font-mono tracking-wider text-red-400/90 uppercase px-2">
           Restricted Command Console // Authorized Personnel Only
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
-        <div className="bg-luxury-surface/90 border border-luxury-border/80 backdrop-blur-xl py-8 px-6 shadow-2xl rounded-2xl sm:px-10">
+      <div className="mt-6 sm:mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-2 sm:px-0">
+        <div className="bg-luxury-surface/90 border border-luxury-border/80 backdrop-blur-xl py-6 sm:py-8 px-4 xs:px-6 shadow-2xl rounded-2xl sm:px-10">
           {error && (
             <div className="mb-6 p-4 rounded-xl bg-red-950/40 border border-red-500/40 flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />

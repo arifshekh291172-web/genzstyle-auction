@@ -44,7 +44,7 @@ const AdminOverview = () => {
         subtitle="Real-time verified operations telemetry from MongoDB"
       />
 
-      <div className="p-6 md:p-8 space-y-8 flex-1">
+      <div className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 flex-1 w-full max-w-full">
         {loading ? (
           <div className="py-20 text-center text-xs text-gray-400 font-mono tracking-widest uppercase">
             Aggregating MongoDB Collections...
@@ -52,50 +52,50 @@ const AdminOverview = () => {
         ) : (
           <>
             {/* Top Revenue Summary Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-luxury-surface to-luxury-card border-2 border-luxury-gold/50 rounded-2xl p-6 shadow-luxury-glow">
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-gradient-to-br from-luxury-surface to-luxury-card border-2 border-luxury-gold/50 rounded-2xl p-4 sm:p-6 shadow-luxury-glow">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
                   GROSS PLATFORM VOLUME
                 </span>
-                <span className="font-display font-black text-3xl md:text-4xl text-white">
+                <span className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-white">
                   ₹{Number(metrics?.totalGrossVolume || 0).toLocaleString('en-IN')}
                 </span>
-                <span className="text-[11px] text-luxury-gold mt-2 block font-semibold">
+                <span className="text-[10px] sm:text-[11px] text-luxury-gold mt-1.5 sm:mt-2 block font-semibold">
                   Membership + Auction Sales
                 </span>
               </div>
 
-              <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
+              <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
                   MEMBERSHIP REVENUE (₹49)
                 </span>
-                <span className="font-display font-black text-3xl text-luxury-gold">
+                <span className="font-display font-black text-2xl sm:text-3xl text-luxury-gold">
                   ₹{Number(metrics?.membershipRevenue || 0).toLocaleString('en-IN')}
                 </span>
-                <span className="text-[11px] text-gray-400 mt-2 block">
+                <span className="text-[10px] sm:text-[11px] text-gray-400 mt-1.5 sm:mt-2 block">
                   {metrics?.activeMemberships || 0} Active VIP Passports
                 </span>
               </div>
 
-              <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
+              <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400 block mb-1">
                   SETTLED AUCTION SALES
                 </span>
-                <span className="font-display font-black text-3xl text-emerald-400">
+                <span className="font-display font-black text-2xl sm:text-3xl text-emerald-400">
                   ₹{Number(metrics?.auctionSales || 0).toLocaleString('en-IN')}
                 </span>
-                <span className="text-[11px] text-gray-400 mt-2 block">
+                <span className="text-[10px] sm:text-[11px] text-gray-400 mt-1.5 sm:mt-2 block">
                   {metrics?.completedOrders || 0} Settled Orders
                 </span>
               </div>
             </div>
 
             {/* Operational Telemetry Grid */}
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-display pt-4">
+            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider font-display pt-2 sm:pt-4">
               Real Database Metrics
             </h3>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
               <StatCard
                 title="TOTAL USERS"
                 value={metrics?.totalUsers}

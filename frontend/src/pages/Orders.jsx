@@ -179,9 +179,9 @@ const Orders = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-mobile-nav">
-      <div className="pb-8 border-b border-luxury-border/60">
-        <h1 className="text-3xl md:text-5xl font-black text-white uppercase font-display">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 pb-mobile-nav">
+      <div className="pb-6 sm:pb-8 border-b border-luxury-border/60">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white uppercase font-display">
           DROP ORDERS &amp; PICKUPS
         </h1>
         <p className="text-xs md:text-sm text-gray-400 mt-1">
@@ -190,7 +190,7 @@ const Orders = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-3 py-6 border-b border-luxury-border/60 overflow-x-auto scrollbar-none">
+      <div className="flex items-center gap-2 sm:gap-3 py-4 sm:py-6 border-b border-luxury-border/60 overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0 scrollbar-none w-auto max-w-full">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -198,13 +198,13 @@ const Orders = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition shrink-0 ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition shrink-0 ${
                 isActive
                   ? 'bg-luxury-gold text-black shadow-luxury-gold'
                   : 'bg-luxury-surface text-gray-400 hover:text-white border border-luxury-border/60'
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
+              <Icon className="w-3.5 h-3.5 shrink-0" />
               <span>{tab.label}</span>
             </button>
           );
@@ -224,7 +224,7 @@ const Orders = () => {
           />
         </div>
       ) : (
-        <div className="space-y-4 pt-8">
+        <div className="space-y-4 pt-6 sm:pt-8">
           {orders.map((order) => {
             const product = order.productId || {};
             const isPending = order.orderStatus === 'PAYMENT_PENDING';
@@ -237,7 +237,7 @@ const Orders = () => {
             return (
               <div
                 key={order._id}
-                className="bg-luxury-surface border border-luxury-border rounded-2xl p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-card-dark"
+                className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 shadow-card-dark"
               >
                 {/* Product & Order Info */}
                 <div className="flex items-start gap-4">

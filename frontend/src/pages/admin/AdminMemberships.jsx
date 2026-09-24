@@ -32,7 +32,7 @@ const AdminMemberships = () => {
         subtitle="Real immutable Razorpay ₹49 transaction records stored in MongoDB"
       />
 
-      <div className="p-6 md:p-8 flex-1">
+      <div className="p-4 sm:p-6 md:p-8 flex-1 w-full max-w-full">
         {loading ? (
           <div className="py-20 text-center text-xs text-gray-400 font-mono tracking-widest uppercase">
             Loading membership ledgers...
@@ -43,9 +43,9 @@ const AdminMemberships = () => {
             description="Verified ₹49 membership activation records will appear here."
           />
         ) : (
-          <div className="bg-luxury-surface border border-luxury-border rounded-2xl overflow-hidden shadow-card-dark">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+          <div className="bg-luxury-surface border border-luxury-border rounded-2xl overflow-hidden shadow-card-dark w-full max-w-full">
+            <div className="overflow-x-auto w-full">
+              <table className="w-full min-w-[700px] text-left text-xs">
                 <thead className="bg-luxury-card/70 border-b border-luxury-border text-gray-400 uppercase tracking-wider font-bold">
                   <tr>
                     <th className="py-3.5 px-4">Collector</th>

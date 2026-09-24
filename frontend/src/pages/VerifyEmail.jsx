@@ -154,8 +154,8 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-8 shadow-card-dark text-center">
+    <div className="min-h-[80vh] flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12">
+      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 sm:p-8 shadow-card-dark text-center">
         {verifiedSuccess ? (
           <div className="py-6 animate-fade-in">
             <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto mb-4">
@@ -189,12 +189,12 @@ const VerifyEmail = () => {
               <ShieldCheck className="w-7 h-7" />
             </div>
 
-            <h1 className="text-2xl font-black text-white uppercase tracking-wider font-display mb-1">
+            <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider font-display mb-1">
               Verify Your Account
             </h1>
 
             {email ? (
-              <p className="text-xs text-gray-400 mb-6">
+              <p className="text-xs text-gray-400 mb-6 break-words">
                 Enter the 6-digit code sent to <span className="text-luxury-gold font-mono font-bold">{email}</span>
               </p>
             ) : (
@@ -206,14 +206,14 @@ const VerifyEmail = () => {
             {error && (
               <div className="mb-6 p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs flex items-center gap-2.5 text-left">
                 <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
-                <div className="leading-relaxed">{error}</div>
+                <div className="leading-relaxed break-words">{error}</div>
               </div>
             )}
 
             {resendMessage && (
               <div className="mb-6 p-3.5 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 text-xs flex items-center gap-2.5 text-left">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <div className="leading-relaxed">{resendMessage}</div>
+                <div className="leading-relaxed break-words">{resendMessage}</div>
               </div>
             )}
 
@@ -235,12 +235,12 @@ const VerifyEmail = () => {
                   </div>
                 )}
 
-                {/* 6-Digit OTP Boxes */}
+                {/* 6-Digit OTP Boxes - Responsive with no overflow */}
                 <div>
                   <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-3 font-mono">
                     6-Digit Verification OTP
                   </label>
-                  <div className="flex justify-center items-center gap-2.5 sm:gap-3">
+                  <div className="flex justify-center items-center gap-1.5 xs:gap-2 sm:gap-3 w-full max-w-full">
                     {otp.map((digit, index) => (
                       <input
                         key={index}
@@ -251,7 +251,7 @@ const VerifyEmail = () => {
                         value={digit}
                         onChange={(e) => handleOtpChange(index, e.target.value)}
                         onKeyDown={(e) => handleKeyDown(index, e)}
-                        className="w-11 h-14 sm:w-12 sm:h-16 text-center text-xl sm:text-2xl font-black font-mono text-white bg-luxury-card border border-luxury-border rounded-xl focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold focus:outline-none transition shadow-sm"
+                        className="w-9 h-12 xs:w-11 xs:h-14 sm:w-12 sm:h-16 text-center text-lg xs:text-xl sm:text-2xl font-black font-mono text-white bg-luxury-card border border-luxury-border rounded-lg sm:rounded-xl focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold focus:outline-none transition shadow-sm shrink"
                       />
                     ))}
                   </div>
@@ -260,19 +260,19 @@ const VerifyEmail = () => {
                 <button
                   type="submit"
                   disabled={loading || otp.join('').length < 6}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="w-full py-3.5 px-3 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-[11px] sm:text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
-                      <span>VERIFY OTP & ACTIVATE ACCOUNT</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span className="truncate">VERIFY OTP & ACTIVATE ACCOUNT</span>
+                      <ArrowRight className="w-4 h-4 shrink-0" />
                     </>
                   )}
                 </button>
 
-                <div className="flex items-center justify-between text-xs pt-2">
+                <div className="flex flex-col xs:flex-row items-center justify-between gap-2.5 text-xs pt-2">
                   <button
                     type="button"
                     onClick={handleResend}

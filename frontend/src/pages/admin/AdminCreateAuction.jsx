@@ -106,8 +106,8 @@ const AdminCreateAuction = () => {
         subtitle="Configure 100-collector room parameters and timing"
       />
 
-      <div className="p-6 md:p-8 max-w-4xl">
-        <div className="mb-6">
+      <div className="p-3 xs:p-4 sm:p-6 md:p-8 max-w-4xl w-full">
+        <div className="mb-4 sm:mb-6">
           <Link
             to="/admin/auctions"
             className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition"
@@ -124,7 +124,7 @@ const AdminCreateAuction = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="bg-luxury-surface border border-luxury-border rounded-2xl p-6 md:p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 md:p-8 space-y-5 sm:space-y-6">
           <div>
             <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5">
               Select Product From Catalog

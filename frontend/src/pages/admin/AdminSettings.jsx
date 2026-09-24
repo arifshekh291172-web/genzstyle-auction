@@ -31,55 +31,55 @@ const AdminSettings = () => {
         subtitle="Cryptographically backed event log of all critical administrator and scheduler operations"
       />
 
-      <div className="p-6 md:p-8 space-y-8 flex-1">
+      <div className="p-3 xs:p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 flex-1 min-w-0 w-full">
         {/* System Health Indicators */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-4">
-            <div className="p-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
+          <div className="p-4 sm:p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-3.5 sm:gap-4">
+            <div className="p-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl shrink-0">
               <Database className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider block">
                 Database Engine
               </span>
-              <span className="font-bold text-sm text-white">MongoDB Atlas (Mongoose)</span>
-              <span className="text-[10px] text-emerald-400 block mt-0.5">Automated AutoIndex Active</span>
+              <span className="font-bold text-xs sm:text-sm text-white truncate block">MongoDB Atlas</span>
+              <span className="text-[10px] text-emerald-400 block mt-0.5 truncate">Automated AutoIndex Active</span>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-4">
-            <div className="p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl">
+          <div className="p-4 sm:p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-3.5 sm:gap-4">
+            <div className="p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl shrink-0">
               <Activity className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider block">
                 Schedulers
               </span>
-              <span className="font-bold text-sm text-white">Node-Cron Automation</span>
-              <span className="text-[10px] text-luxury-gold block mt-0.5">10s Auction Lifecycle Active</span>
+              <span className="font-bold text-xs sm:text-sm text-white truncate block">Node-Cron Automation</span>
+              <span className="text-[10px] text-luxury-gold block mt-0.5 truncate">10s Lifecycle Active</span>
             </div>
           </div>
 
-          <div className="p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-4">
-            <div className="p-3 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl">
+          <div className="p-4 sm:p-5 rounded-2xl bg-luxury-surface border border-luxury-border flex items-center gap-3.5 sm:gap-4">
+            <div className="p-3 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl shrink-0">
               <Shield className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider block">
                 Payments
               </span>
-              <span className="font-bold text-sm text-white">Razorpay Node SDK</span>
-              <span className="text-[10px] text-blue-400 block mt-0.5">HMAC SHA-256 Webhook Armed</span>
+              <span className="font-bold text-xs sm:text-sm text-white truncate block">Razorpay Node SDK</span>
+              <span className="text-[10px] text-blue-400 block mt-0.5 truncate">HMAC SHA-256 Webhook</span>
             </div>
           </div>
         </div>
 
         {/* Immutable Audit Log Table */}
-        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6 shadow-card-dark">
-          <div className="flex items-center justify-between pb-4 border-b border-luxury-border mb-4">
+        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-3.5 sm:p-6 shadow-card-dark">
+          <div className="flex flex-col xs:flex-row xs:items-center justify-between pb-4 border-b border-luxury-border mb-4 gap-2">
             <div className="flex items-center gap-2">
               <History className="w-4 h-4 text-luxury-gold" />
-              <h3 className="font-bold text-sm text-white uppercase tracking-wider">
+              <h3 className="font-bold text-xs sm:text-sm text-white uppercase tracking-wider">
                 Immutable Operations Audit Log
               </h3>
             </div>
@@ -97,8 +97,8 @@ const AdminSettings = () => {
               No audit logs recorded yet. All administrative actions will be automatically registered here.
             </p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-mono">
+            <div className="w-full max-w-full overflow-x-auto">
+              <table className="w-full min-w-[700px] text-left text-xs font-mono">
                 <thead className="text-gray-400 uppercase tracking-wider text-[11px] border-b border-luxury-border">
                   <tr>
                     <th className="py-3 px-3">Timestamp</th>

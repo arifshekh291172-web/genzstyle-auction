@@ -61,13 +61,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-8 shadow-card-dark">
-        <div className="text-center mb-8">
+    <div className="min-h-[85vh] flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12">
+      <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 sm:p-8 shadow-card-dark">
+        <div className="text-center mb-6 sm:mb-8">
           <div className="w-12 h-12 rounded-xl bg-luxury-card border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-2xl shadow-luxury-gold mx-auto mb-3">
             G
           </div>
-          <h1 className="text-2xl font-black text-white uppercase tracking-wider font-display">
+          <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider font-display">
             Create Collector Account
           </h1>
           <p className="text-xs text-gray-400 mt-1">
@@ -78,7 +78,7 @@ const Signup = () => {
         {error && (
           <div className="mb-6 p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs flex items-center gap-2.5">
             <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
-            <div className="leading-relaxed">{error}</div>
+            <div className="leading-relaxed break-words">{error}</div>
           </div>
         )}
 
@@ -173,7 +173,7 @@ const Signup = () => {
           </div>
 
           {/* Mandatory Age & Mumbai Delivery Affirmation */}
-          <div className="p-3.5 rounded-xl border border-luxury-border/80 bg-luxury-card/50 space-y-2.5">
+          <div className="p-3 sm:p-3.5 rounded-xl border border-luxury-border/80 bg-luxury-card/50 space-y-2.5">
             <div className="flex items-start gap-2.5">
               <input
                 type="checkbox"
@@ -182,7 +182,7 @@ const Signup = () => {
                 required
                 checked={formData.acceptedTerms}
                 onChange={handleChange}
-                className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37]"
+                className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37] shrink-0"
               />
               <label htmlFor="acceptedTerms" className="text-xs text-gray-300 leading-snug cursor-pointer select-none">
                 I certify that <strong>I am 18 years of age or older</strong> and agree to the{' '}
@@ -192,17 +192,17 @@ const Signup = () => {
               </label>
             </div>
 
-            <div className="text-[11px] text-gray-400 pl-6 space-y-1 font-mono">
-              <p className="flex items-center gap-1.5 text-luxury-gold/90">
-                <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold"></span>
+            <div className="text-[10px] sm:text-[11px] text-gray-400 pl-6 space-y-1 font-mono">
+              <p className="flex items-start gap-1.5 text-luxury-gold/90">
+                <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shrink-0 mt-1"></span>
                 <span><strong>Demographic:</strong> Curated for 18 to 40 collectors.</span>
               </p>
-              <p className="flex items-center gap-1.5 text-gray-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+              <p className="flex items-start gap-1.5 text-gray-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1"></span>
                 <span><strong>Service Zone:</strong> Deliveries strictly in Mumbai (MMR) region.</span>
               </p>
-              <p className="flex items-center gap-1.5 text-gray-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+              <p className="flex items-start gap-1.5 text-gray-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1"></span>
                 <span><strong>Drop Policies:</strong> ₹49 non-refundable pass • 100-cap • 48h winner deadline.</span>
               </p>
             </div>
@@ -211,10 +211,10 @@ const Signup = () => {
           <button
             type="submit"
             disabled={loading || !formData.acceptedTerms}
-            className="w-full mt-2 py-3.5 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full mt-2 py-3.5 px-3 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-[11px] sm:text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <span>{loading ? 'SENDING OTP...' : 'SIGN UP & GET 6-DIGIT OTP'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="truncate">{loading ? 'SENDING OTP...' : 'SIGN UP & GET 6-DIGIT OTP'}</span>
+            <ArrowRight className="w-4 h-4 shrink-0" />
           </button>
         </form>
 

@@ -130,33 +130,33 @@ const AuctionCard = ({ auction, onJoinSuccess = null }) => {
         </div>
 
         {/* Pricing & Join Action */}
-        <div className="mt-4 flex items-center justify-between gap-3">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
           <div>
             <span className="text-[10px] text-gray-400 uppercase tracking-wider block">
               {isLive ? 'Current Bid' : 'Starting Bid'}
             </span>
-            <span className="font-display font-black text-lg md:text-xl text-white">
+            <span className="font-display font-black text-base sm:text-lg md:text-xl text-white">
               ₹{(isLive ? auction.currentBid : auction.startingBid || 0).toLocaleString('en-IN')}
             </span>
           </div>
 
           {joined ? (
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-2 rounded-xl">
+            <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl whitespace-nowrap">
               <Check className="w-3.5 h-3.5" /> SEAT SECURED
             </span>
           ) : isLive ? (
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-black bg-gradient-to-r from-luxury-gold to-luxury-gold-dark px-4 py-2 rounded-xl group-hover:brightness-110 shadow-luxury-gold transition">
+            <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-black bg-gradient-to-r from-luxury-gold to-luxury-gold-dark px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl group-hover:brightness-110 shadow-luxury-gold transition whitespace-nowrap">
               ENTER LIVE ROOM <ArrowRight className="w-3.5 h-3.5" />
             </span>
           ) : isFull ? (
-            <span className="text-xs font-bold text-gray-400 bg-luxury-card px-3.5 py-2 rounded-xl border border-luxury-border">
+            <span className="text-[11px] sm:text-xs font-bold text-gray-400 bg-luxury-card px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-luxury-border whitespace-nowrap">
               CAP REACHED
             </span>
           ) : (
             <button
               onClick={handleJoin}
               disabled={joining}
-              className="text-xs font-bold text-luxury-gold bg-luxury-gold/10 hover:bg-luxury-gold hover:text-black border border-luxury-gold/40 px-3.5 py-2 rounded-xl transition flex items-center gap-1.5"
+              className="text-[11px] sm:text-xs font-bold text-luxury-gold bg-luxury-gold/10 hover:bg-luxury-gold hover:text-black border border-luxury-gold/40 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl transition flex items-center gap-1.5 whitespace-nowrap"
             >
               <Sparkles className="w-3 h-3" />
               {joining ? 'RESERVING...' : 'JOIN DROP'}

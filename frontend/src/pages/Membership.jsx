@@ -136,38 +136,38 @@ const Membership = () => {
   const isPaused = membershipData?.auctionAccessStatus === 'BLOCKED' && membershipData?.status === 'FORFEITED';
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+    <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-16">
       {/* Title */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-luxury-gold/40 bg-luxury-gold/10 text-luxury-gold text-xs font-bold uppercase tracking-widest mb-3">
+      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-luxury-gold/40 bg-luxury-gold/10 text-luxury-gold text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-3">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Collector Passport</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-white uppercase font-display">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white uppercase font-display leading-tight">
           GENZSTYLE MEMBERSHIP
         </h1>
-        <p className="text-xs sm:text-sm text-gray-400 mt-2">
+        <p className="text-xs sm:text-sm text-gray-400 mt-2 px-2">
           Your key to unlocking 100-collector real-time drop rooms with authoritative ₹10 bidding.
         </p>
       </div>
 
       {error && (
-        <div className="max-w-xl mx-auto mb-8 p-4 rounded-xl bg-red-950/80 border border-red-500/50 text-red-200 text-xs flex items-center gap-3">
+        <div className="max-w-xl mx-auto mb-8 p-3.5 sm:p-4 rounded-xl bg-red-950/80 border border-red-500/50 text-red-200 text-xs flex items-center gap-3">
           <AlertTriangle className="w-5 h-5 text-red-400 shrink-0" />
-          <span>{error}</span>
+          <span className="break-words">{error}</span>
         </div>
       )}
 
       {/* Paused Access Alert if defaulted on 48h payment */}
       {isPaused && (
-        <div className="max-w-2xl mx-auto mb-10 p-6 rounded-2xl bg-red-950/40 border border-red-500/50 text-left animate-fade-in shadow-2xl">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-red-500/20 rounded-xl text-red-400 shrink-0">
-              <AlertTriangle className="w-6 h-6" />
+        <div className="max-w-2xl mx-auto mb-8 sm:mb-10 p-4 sm:p-6 rounded-2xl bg-red-950/40 border border-red-500/50 text-left animate-fade-in shadow-2xl">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 bg-red-500/20 rounded-xl text-red-400 shrink-0">
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between mb-1">
-                <h3 className="font-bold text-white text-base uppercase tracking-wider">
+                <h3 className="font-bold text-white text-sm sm:text-base uppercase tracking-wider">
                   AUCTION ACCESS PAUSED
                 </h3>
                 <Badge status="FORFEITED" size="xs" />
@@ -178,7 +178,7 @@ const Membership = () => {
               <button
                 onClick={handleActivatePayment}
                 disabled={processingPayment}
-                className="py-3 px-6 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center gap-2"
+                className="py-3 px-5 sm:px-6 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center gap-2"
               >
                 <span>{processingPayment ? 'CONNECTING...' : 'REACTIVATE ACCESS — ₹49'}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -189,9 +189,9 @@ const Membership = () => {
       )}
 
       {/* Main Membership Card Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center max-w-4xl mx-auto">
         {/* Luxury Gold Membership Card (7 cols) */}
-        <div className="md:col-span-7 bg-gradient-to-br from-luxury-surface via-[#181924] to-luxury-card border-2 border-luxury-gold/50 rounded-3xl p-6 sm:p-8 shadow-luxury-glow relative overflow-hidden flex flex-col justify-between min-h-[420px]">
+        <div className="md:col-span-7 bg-gradient-to-br from-luxury-surface via-[#181924] to-luxury-card border-2 border-luxury-gold/50 rounded-3xl p-4 xs:p-6 sm:p-8 shadow-luxury-glow relative overflow-hidden flex flex-col justify-between min-h-[380px]">
           {/* Decorative Gold Sheen Background */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-luxury-gold/15 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -209,11 +209,11 @@ const Membership = () => {
             </div>
 
             <div className="mb-6">
-              <span className="text-[11px] font-mono text-luxury-gold uppercase tracking-widest font-bold">
+              <span className="text-[10px] sm:text-[11px] font-mono text-luxury-gold uppercase tracking-widest font-bold">
                 ANNUAL COLLECTOR PASSPORT
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-display font-black text-4xl sm:text-5xl text-white">
+                <span className="font-display font-black text-3xl xs:text-4xl sm:text-5xl text-white">
                   ₹49
                 </span>
                 <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">

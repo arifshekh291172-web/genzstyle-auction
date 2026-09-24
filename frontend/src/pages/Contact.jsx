@@ -5,12 +5,12 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div className="text-center max-w-2xl mx-auto mb-16">
+    <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-8 md:py-20 pb-mobile-nav">
+      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
         <span className="text-xs font-bold text-luxury-gold uppercase tracking-widest">
           Concierge Support
         </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-white uppercase font-display mt-2 mb-4">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white uppercase font-display mt-2 mb-4">
           CONTACT GENZSTYLE
         </h1>
         <p className="text-xs sm:text-sm text-gray-400">
@@ -18,20 +18,20 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6 space-y-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6 space-y-4 sm:space-y-6">
+          <div className="flex items-start gap-3.5 sm:gap-4">
+            <div className="p-2.5 sm:p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl shrink-0">
               <Mail className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">Email Inquiry</h4>
-              <p className="text-xs text-gray-400 mt-0.5">concierge@genzstyle.com</p>
+              <p className="text-xs text-gray-400 mt-0.5 truncate">concierge@genzstyle.com</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl">
+          <div className="flex items-start gap-3.5 sm:gap-4">
+            <div className="p-2.5 sm:p-3 bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 rounded-xl shrink-0">
               <MapPin className="w-5 h-5" />
             </div>
             <div>
@@ -40,12 +40,12 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-luxury-card/70 border border-luxury-border text-[11px] text-gray-400 leading-relaxed">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-luxury-card/70 border border-luxury-border text-[11px] text-gray-400 leading-relaxed">
             Concierge hours: Monday &ndash; Saturday, 10:00 AM &ndash; 8:00 PM IST.
           </div>
         </div>
 
-        <div className="md:col-span-2 bg-luxury-surface border border-luxury-border rounded-2xl p-8">
+        <div className="md:col-span-2 bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 sm:p-8">
           {submitted ? (
             <div className="text-center py-12">
               <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
@@ -112,7 +112,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="py-3 px-8 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center gap-2"
+                className="w-full sm:w-auto justify-center py-3 px-8 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 <span>DISPATCH INQUIRY</span>

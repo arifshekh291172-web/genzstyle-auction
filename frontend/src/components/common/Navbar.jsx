@@ -68,17 +68,17 @@ const Navbar = () => {
 
       {/* Main Desktop & Mobile Header */}
       <header className="sticky top-0 z-40 glass-nav border-b border-luxury-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
           {/* Logo & Brand */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 md:w-11 md:h-11 rounded-lg bg-luxury-surface border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-lg md:text-xl shadow-luxury-gold group-hover:border-luxury-gold transition-colors">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg bg-luxury-surface border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-base sm:text-xl shadow-luxury-gold group-hover:border-luxury-gold transition-colors shrink-0">
               G
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-black text-xl md:text-2xl tracking-[0.2em] text-white flex items-center">
+              <span className="font-display font-black text-base sm:text-xl md:text-2xl tracking-[0.15em] sm:tracking-[0.2em] text-white flex items-center">
                 GENZ<span className="text-luxury-gold">STYLE</span>
               </span>
-              <span className="text-[9px] md:text-[10px] tracking-[0.25em] text-gray-400 uppercase -mt-1 font-medium">
+              <span className="hidden xs:block text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] text-gray-400 uppercase -mt-0.5 sm:-mt-1 font-medium">
                 Limited &bull; Competitive &bull; Yours
               </span>
             </div>
@@ -157,7 +157,7 @@ const Navbar = () => {
 
                 {/* Notifications Flyout */}
                 {showNotifications && (
-                  <div className="absolute right-0 mt-3 w-80 sm:w-96 glass-panel rounded-xl shadow-2xl p-4 z-50 border border-luxury-border">
+                  <div className="absolute right-0 mt-3 w-[calc(100vw-2rem)] max-w-sm sm:w-96 glass-panel rounded-xl shadow-2xl p-4 z-50 border border-luxury-border">
                     <div className="flex items-center justify-between pb-3 border-b border-luxury-border">
                       <span className="font-semibold text-sm text-white flex items-center gap-2">
                         <Bell className="w-4 h-4 text-luxury-gold" /> Activity Notifications
@@ -214,7 +214,7 @@ const Navbar = () => {
                 </button>
 
                 {showProfileMenu && (
-                  <div className="absolute right-0 mt-3 w-56 glass-panel rounded-xl shadow-2xl p-2 z-50 border border-luxury-border text-sm">
+                  <div className="absolute right-0 mt-3 w-56 max-w-[calc(100vw-2rem)] glass-panel rounded-xl shadow-2xl p-2 z-50 border border-luxury-border text-sm">
                     <div className="px-3 py-2 border-b border-luxury-border">
                       <p className="font-semibold text-white truncate">{user?.name}</p>
                       <p className="text-xs text-gray-400 truncate">{user?.email}</p>
@@ -275,18 +275,19 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 xs:gap-3 shrink-0">
                 <Link
                   to="/login"
-                  className="text-xs sm:text-sm text-gray-300 hover:text-white font-medium px-3 py-1.5 transition"
+                  className="text-xs sm:text-sm text-gray-300 hover:text-white font-medium px-2 sm:px-3 py-1.5 transition whitespace-nowrap"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/signup"
-                  className="text-xs sm:text-sm bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-bold px-4 py-2 rounded-lg hover:brightness-110 transition shadow-luxury-gold"
+                  className="text-[11px] sm:text-xs md:text-sm bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-bold px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:brightness-110 transition shadow-luxury-gold whitespace-nowrap"
                 >
-                  Join Drop Club
+                  <span className="hidden xs:inline">Join Drop Club</span>
+                  <span className="xs:hidden">Join</span>
                 </Link>
               </div>
             )}

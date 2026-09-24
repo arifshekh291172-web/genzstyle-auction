@@ -32,12 +32,12 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div className="text-center max-w-2xl mx-auto mb-16">
+    <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-8 md:py-20 pb-mobile-nav">
+      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
         <span className="text-xs font-bold text-luxury-gold uppercase tracking-widest">
           Knowledge Base
         </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-white uppercase font-display mt-2 mb-4">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black text-white uppercase font-display mt-2 mb-4">
           FREQUENTLY ASKED QUESTIONS
         </h1>
         <p className="text-xs sm:text-sm text-gray-400">
@@ -45,7 +45,7 @@ const FAQ = () => {
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {faqs.map((faq, idx) => (
           <div
             key={idx}
@@ -53,17 +53,17 @@ const FAQ = () => {
           >
             <button
               onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-              className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-white"
+              className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 font-bold text-xs sm:text-sm text-white"
             >
               <span>{faq.q}</span>
               <ChevronDown
-                className={`w-4 h-4 text-luxury-gold transition-transform duration-300 ${
+                className={`w-4 h-4 text-luxury-gold transition-transform duration-300 shrink-0 ${
                   openIndex === idx ? 'rotate-180' : ''
                 }`}
               />
             </button>
             {openIndex === idx && (
-              <div className="px-5 pb-5 text-xs text-gray-300 leading-relaxed border-t border-luxury-border/40 pt-3">
+              <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-xs text-gray-300 leading-relaxed border-t border-luxury-border/40 pt-3">
                 {faq.a}
               </div>
             )}

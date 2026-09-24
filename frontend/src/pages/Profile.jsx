@@ -43,9 +43,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-mobile-nav">
-      <div className="pb-8 border-b border-luxury-border/60">
-        <h1 className="text-3xl md:text-5xl font-black text-white uppercase font-display">
+    <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-12 pb-mobile-nav">
+      <div className="pb-6 sm:pb-8 border-b border-luxury-border/60">
+        <h1 className="text-2xl xs:text-3xl md:text-5xl font-black text-white uppercase font-display">
           COLLECTOR PROFILE
         </h1>
         <p className="text-xs md:text-sm text-gray-400 mt-1">
@@ -60,9 +60,9 @@ const Profile = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 my-6 sm:my-8">
         {/* Left Column: Account Summary Card */}
-        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-6 h-fit space-y-6">
+        <div className="bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6 h-fit space-y-6">
           <div className="text-center">
             <div className="w-20 h-20 rounded-full bg-luxury-card border-2 border-luxury-gold/50 flex items-center justify-center font-display font-black text-luxury-gold text-2xl shadow-luxury-gold mx-auto mb-3">
               {user?.name?.[0]?.toUpperCase() || 'C'}
@@ -101,7 +101,7 @@ const Profile = () => {
         </div>
 
         {/* Right 2 Columns: Editable Details Form */}
-        <div className="md:col-span-2 bg-luxury-surface border border-luxury-border rounded-2xl p-6 md:p-8">
+        <div className="md:col-span-2 bg-luxury-surface border border-luxury-border rounded-2xl p-4 sm:p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <h3 className="text-sm font-bold text-white uppercase tracking-wider pb-2 border-b border-luxury-border">
               Personal Information
@@ -211,7 +211,7 @@ const Profile = () => {
             <button
               type="submit"
               disabled={saving}
-              className="py-3 px-8 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center gap-2"
+              className="w-full sm:w-auto py-3 px-8 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2"
             >
               <Save className="w-4 h-4" />
               <span>{saving ? 'SAVING...' : 'SAVE CHANGES'}</span>
