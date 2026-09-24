@@ -27,19 +27,33 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const data = await login(formData.email, formData.password);
+      const email = formData.email.trim();
+      const password = formData.password.trim();
+      const data = await login(email, password);
       if (data.user?.role !== 'ADMIN') {
-        setError('ACCESS_DENIED: This console is restricted strictly to authorized platform administrators.');
+        setError('ACCESS_DENIED: This account does not have administrator privileges.');
         return;
       }
       navigate('/admin', { replace: true });
     } catch (err) {
-      setError(
-        err.response?.data?.message || 'Authentication failed. Please verify your administrator credentials.'
-      );
+      if (err.message === 'Network Error' || !err.response) {
+        setError('NETWORK_ERROR: Unable to reach backend server at http://localhost:5000. Ensure "npm run dev" is active.');
+      } else {
+        setError(
+          err.response?.data?.message || 'Authentication failed. Please check your admin email and password.'
+        );
+      }
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFillCredentials = () => {
+    setFormData({
+      email: 'admin@genzstyle.com',
+      password: 'AdminSecurePassword123!',
+    });
+    setError('');
   };
 
   return (
@@ -113,7 +127,7 @@ const AdminLogin = () => {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 space-y-3">
               <button
                 type="submit"
                 disabled={loading}
@@ -127,6 +141,14 @@ const AdminLogin = () => {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
+              </button>
+
+              <button
+                type="button"
+                onClick={handleFillCredentials}
+                className="w-full py-2.5 px-3 rounded-lg border border-luxury-border/60 bg-white/5 hover:bg-white/10 text-xs font-mono text-gray-300 transition flex items-center justify-center gap-2"
+              >
+                <span>🔑 Auto-Fill Default Admin Credentials</span>
               </button>
             </div>
           </form>

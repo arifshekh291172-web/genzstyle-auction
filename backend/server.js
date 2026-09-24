@@ -105,9 +105,9 @@ const handleGracefulShutdown = (signal) => {
   });
 };
 
-process.on('SIGTERM', () => handleGracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => handleGracefulShutdown('SIGINT'));
-
 startServer();
 
 module.exports = { app, server };
+// Reloaded with MongoDB Atlas config
+
+
