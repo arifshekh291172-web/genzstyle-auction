@@ -58,8 +58,15 @@ const VerifyEmail = () => {
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) {
-      // Handle paste
-      const pasted = value.replace(/\D/g, '').slice(0, 6).split('');
+      const cleanVal = value.trim();
+      // If user pasted a long verification token
+      if (cleanVal.length > 10) {
+        handleTokenVerify(cleanVal);
+        return;
+      }
+
+      // Handle 6-digit OTP paste
+      const pasted = cleanVal.replace(/\D/g, '').slice(0, 6).split('');
       const newOtp = [...otp];
       pasted.forEach((char, i) => {
         newOtp[i] = char;
@@ -95,17 +102,12 @@ const VerifyEmail = () => {
   };
 
   const submitOtp = async (code) => {
-    if (!email.trim()) {
-      setError('Please provide your email address.');
-      return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
       const res = await verifyEmail({
-        email: email.trim(),
+        email: email ? email.trim() : undefined,
         otp: code,
       });
       if (res.success) {

@@ -94,9 +94,11 @@ const authController = {
       console.log(`==================================================\n`);
 
       // Send verification email with 6-digit OTP and direct link
-      emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp).catch((err) => {
+      try {
+        await emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp);
+      } catch (err) {
         logger.error('EMAIL_DISPATCH_FAILED', `Failed to send verification email: ${err.message}`);
-      });
+      }
 
       // Audit log
       await auditService.log({
@@ -123,46 +125,55 @@ const authController = {
    */
   verifyEmail: async (req, res, next) => {
     try {
-      const { token, otp, email } = req.body;
+      const { token, otp, email, code } = req.body;
 
-      if (!token && !otp) {
+      let lookupToken = token;
+      let lookupOtp = otp;
+
+      // Handle unified code input if provided
+      if (code) {
+        const cleanCode = String(code).trim();
+        if (/^\d{6}$/.test(cleanCode)) {
+          lookupOtp = cleanCode;
+        } else {
+          lookupToken = cleanCode;
+        }
+      }
+
+      if (!lookupToken && !lookupOtp) {
         return res.status(400).json({
           success: false,
           error: 'CODE_REQUIRED',
-          message: 'Verification token or 6-digit OTP code is required.',
+          message: 'Please provide either the 6-digit OTP or verification token.',
         });
       }
 
       let user = null;
 
-      if (token) {
-        const hashedToken = hashToken(token);
+      if (lookupToken) {
+        const hashedToken = hashToken(lookupToken);
         user = await User.findOne({
           emailVerificationTokenHash: hashedToken,
           emailVerificationExpires: { $gt: new Date() },
         });
-      } else if (otp) {
-        if (!email) {
-          return res.status(400).json({
-            success: false,
-            error: 'EMAIL_REQUIRED',
-            message: 'Email address is required for OTP verification.',
-          });
-        }
-        const cleanOtp = String(otp).trim();
+      } else if (lookupOtp) {
+        const cleanOtp = String(lookupOtp).trim();
         const hashedOtp = hashToken(cleanOtp);
-        user = await User.findOne({
-          email: email.toLowerCase().trim(),
+        const query = {
           emailVerificationOtpHash: hashedOtp,
           emailVerificationOtpExpires: { $gt: new Date() },
-        });
+        };
+        if (email) {
+          query.email = email.toLowerCase().trim();
+        }
+        user = await User.findOne(query);
       }
 
       if (!user) {
         return res.status(400).json({
           success: false,
           error: 'INVALID_OR_EXPIRED_CODE',
-          message: 'The verification code is invalid or has expired. Please check your email or request a new OTP.',
+          message: 'The verification code or token is invalid or has expired. Please check your email or request a new OTP.',
         });
       }
 
@@ -233,7 +244,11 @@ const authController = {
       console.log(`>>> NEW OTP CODE: ${rawOtp} <<< (Expires in 15 mins)`);
       console.log(`==================================================\n`);
 
-      emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp).catch(() => {});
+      try {
+        await emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp);
+      } catch (err) {
+        logger.error('EMAIL_DISPATCH_FAILED', `Failed to resend verification email: ${err.message}`);
+      }
 
       res.status(200).json({
         success: true,
