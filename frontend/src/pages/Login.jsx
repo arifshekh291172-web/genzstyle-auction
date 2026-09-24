@@ -127,13 +127,21 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-luxury-border/60 text-center">
+        <div className="mt-8 pt-6 border-t border-luxury-border/60 text-center space-y-2.5">
           <p className="text-xs text-gray-400">
             Don't have an account?{' '}
             <Link to="/signup" className="text-luxury-gold font-bold hover:underline">
               Create an account
             </Link>
           </p>
+          <div>
+            <Link
+              to="/admin/login"
+              className="text-[11px] text-gray-500 hover:text-luxury-gold transition font-mono tracking-wider"
+            >
+              Staff or Administrator Portal →
+            </Link>
+          </div>
         </div>
       </div>
     </div>

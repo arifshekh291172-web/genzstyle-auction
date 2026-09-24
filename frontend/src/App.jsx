@@ -28,7 +28,7 @@ import HowItWorks from './pages/HowItWorks';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 
-// Admin Pages
+import AdminLogin from './pages/admin/AdminLogin';
 import AdminOverview from './pages/admin/AdminOverview';
 import AdminAuctions from './pages/admin/AdminAuctions';
 import AdminCreateAuction from './pages/admin/AdminCreateAuction';
@@ -72,7 +72,7 @@ const AdminRoute = ({ children }) => {
   }
 
   if (!isAuthenticated || !isAdmin) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;
@@ -81,7 +81,16 @@ const AdminRoute = ({ children }) => {
 // App Layout Controller
 const AppLayout = () => {
   const location = useLocation();
-  const isAdminPath = location.pathname.startsWith('/admin');
+  const isAdminLogin = location.pathname === '/admin/login';
+  const isAdminPath = location.pathname.startsWith('/admin') && !isAdminLogin;
+
+  if (isAdminLogin) {
+    return (
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+      </Routes>
+    );
+  }
 
   if (isAdminPath) {
     return (
