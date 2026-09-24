@@ -23,7 +23,14 @@ router.post(
 // POST /api/auth/verify-email
 router.post(
   '/verify-email',
-  [body('token').trim().notEmpty().withMessage('Verification token is required.')],
+  [
+    body().custom((value, { req }) => {
+      if (!req.body.token && !req.body.otp && !req.body.code) {
+        throw new Error('Please provide either your 6-digit OTP code or verification token.');
+      }
+      return true;
+    }),
+  ],
   validateRequest,
   authController.verifyEmail
 );
