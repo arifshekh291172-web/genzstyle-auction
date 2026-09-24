@@ -108,6 +108,7 @@ const handleGracefulShutdown = (signal) => {
 startServer();
 
 module.exports = { app, server };
-// Reloaded with MongoDB Atlas config
+// Live Gmail SMTP active: arifshekh291172@gmail.com
+
 
 
