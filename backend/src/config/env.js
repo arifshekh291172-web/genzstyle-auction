@@ -12,22 +12,19 @@ const requiredEnvVars = [
 ];
 
 const requiredProductionEnvVars = [
-  'MONGODB_URI',
   'JWT_SECRET',
-  'RAZORPAY_KEY_ID',
-  'RAZORPAY_KEY_SECRET',
-  'SMTP_HOST',
-  'SMTP_USER',
-  'SMTP_PASSWORD',
-  'CLOUDINARY_CLOUD_NAME',
-  'CLOUDINARY_API_KEY',
-  'CLOUDINARY_API_SECRET'
 ];
 
 function validateEnv() {
   const isProduction = process.env.NODE_ENV === 'production';
-  const missing = [];
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
 
+  if (isProduction && !mongoUri) {
+    console.error('[CRITICAL CONFIG ERROR] Missing MONGODB_URI (or MONGO_URI). Database connection cannot proceed.');
+    process.exit(1);
+  }
+
+  const missing = [];
   const checkList = isProduction ? requiredProductionEnvVars : requiredEnvVars;
 
   for (const varName of checkList) {
@@ -37,13 +34,8 @@ function validateEnv() {
   }
 
   if (missing.length > 0) {
-    const errorMsg = `[CRITICAL CONFIG ERROR] Missing required environment variable(s): ${missing.join(', ')}. Please check your .env configuration.`;
-    if (isProduction) {
-      console.error(errorMsg);
-      process.exit(1);
-    } else {
-      console.warn(`[DEVELOPMENT WARNING] ${errorMsg}`);
-    }
+    const errorMsg = `[CONFIG NOTICE] Environment variable(s) not set: ${missing.join(', ')}.`;
+    console.warn(errorMsg);
   }
 }
 
@@ -52,7 +44,7 @@ validateEnv();
 module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   PORT: parseInt(process.env.PORT || '5000', 10),
-  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/genzstyle',
+  MONGODB_URI: process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/genzstyle',
   JWT_SECRET: process.env.JWT_SECRET || 'genzstyle_dev_jwt_secret_key_minimum_32_characters_length_long_2026',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
   CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
