@@ -105,10 +105,12 @@ app.get('/robots.txt', (req, res) => {
 });
 
 app.get('/sitemap.xml', (req, res) => {
-  const sitemapPath = path.join(__dirname, '../../frontend/public/sitemap.xml');
-  if (fs.existsSync(sitemapPath)) {
-    res.type('application/xml');
-    return res.sendFile(sitemapPath);
+  const sitemapDist = path.join(frontendDistPath, 'sitemap.xml');
+  const sitemapPublic = path.join(__dirname, '../../frontend/public/sitemap.xml');
+  const target = fs.existsSync(sitemapDist) ? sitemapDist : sitemapPublic;
+  if (fs.existsSync(target)) {
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+    return res.sendFile(target);
   }
   res.status(404).send('Sitemap not found');
 });
