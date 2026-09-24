@@ -113,6 +113,11 @@ app.get('/sitemap.xml', (req, res) => {
   res.status(404).send('Sitemap not found');
 });
 
+// Google Search Console Site Verification
+app.get('/google30dd34e798d48329.html', (req, res) => {
+  res.type('text/html').send('google-site-verification: google30dd34e798d48329.html');
+});
+
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
 
