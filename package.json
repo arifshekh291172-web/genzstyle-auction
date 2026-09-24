@@ -1,0 +1,32 @@
+{
+  "name": "genzstyle-auction-marketplace",
+  "version": "1.0.0",
+  "description": "GENZSTYLE - Limited. Competitive. Yours. Real full-stack auction marketplace",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:frontend",
+    "start": "cd backend && npm start",
+    "test": "cd backend && npm test",
+    "seed": "cd backend && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "auction",
+    "marketplace",
+    "luxury",
+    "genz",
+    "real-time",
+    "socketio",
+    "razorpay",
+    "mongodb"
+  ],
+  "author": "GENZSTYLE Team",
+  "license": "ISC"
+}
