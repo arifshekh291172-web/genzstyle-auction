@@ -4,13 +4,14 @@ const env = require('../config/env');
 const logger = require('../utils/logger');
 
 const emailService = {
-  sendVerificationEmail: async (user, rawToken) => {
+  sendVerificationEmail: async (user, rawToken, otp) => {
     const verificationUrl = `${env.CLIENT_URL}/verify-email?token=${rawToken}`;
     const emailData = templates.verifyEmail({
       name: user.name,
       verificationUrl,
+      otp,
     });
-    logger.info('EMAIL', `Dispatching verification email to ${user.email}`);
+    logger.info('EMAIL', `Dispatching verification email with OTP [${otp}] to ${user.email}`);
     return sendMail({
       to: user.email,
       subject: emailData.subject,

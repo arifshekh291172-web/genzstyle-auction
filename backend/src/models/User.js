@@ -44,11 +44,35 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    emailVerificationOtpHash: {
+      type: String,
+      default: null,
+    },
+    emailVerificationOtpExpires: {
+      type: Date,
+      default: null,
+    },
     passwordResetTokenHash: {
       type: String,
       default: null,
     },
     passwordResetExpires: {
+      type: Date,
+      default: null,
+    },
+    acceptedTerms: {
+      type: Boolean,
+      default: false,
+    },
+    termsAcceptedAt: {
+      type: Date,
+      default: null,
+    },
+    membershipTermsAccepted: {
+      type: Boolean,
+      default: false,
+    },
+    membershipTermsAcceptedAt: {
       type: Date,
       default: null,
     },

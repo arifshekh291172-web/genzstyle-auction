@@ -27,6 +27,7 @@ import Profile from './pages/Profile';
 import HowItWorks from './pages/HowItWorks';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminOverview from './pages/admin/AdminOverview';
@@ -129,6 +130,7 @@ const AppLayout = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/membership" element={<Membership />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
 
           {/* Authentication Pages */}
           <Route path="/login" element={<Login />} />

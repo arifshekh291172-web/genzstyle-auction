@@ -60,8 +60,9 @@ export const AuthProvider = ({ children }) => {
     return res.data;
   };
 
-  const verifyEmail = async (tokenStr) => {
-    const res = await api.post('/auth/verify-email', { token: tokenStr });
+  const verifyEmail = async (payload) => {
+    const requestBody = typeof payload === 'string' ? { token: payload } : payload;
+    const res = await api.post('/auth/verify-email', requestBody);
     if (res.data.success && res.data.token) {
       setToken(res.data.token);
       setUser(res.data.user);

@@ -99,7 +99,7 @@ const Footer = () => {
             <li><Link to="/faq" className="hover:text-luxury-gold transition">Frequently Asked Questions</Link></li>
             <li><Link to="/contact" className="hover:text-luxury-gold transition">Concierge Support</Link></li>
             <li><span className="text-gray-500">Authenticity Guarantee</span></li>
-            <li><span className="text-gray-500">Terms of Membership</span></li>
+            <li><Link to="/terms" className="hover:text-luxury-gold transition">Terms &amp; Conditions</Link></li>
           </ul>
         </div>
       </div>

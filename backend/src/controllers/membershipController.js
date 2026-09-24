@@ -33,6 +33,16 @@ const membershipController = {
         });
       }
 
+      const { acceptedTerms } = req.body;
+
+      if (!acceptedTerms) {
+        return res.status(400).json({
+          success: false,
+          error: 'TERMS_REQUIRED',
+          message: 'You must review and accept the Membership Terms & Conditions (365 days, non-refundable, forfeiture on default) to proceed.',
+        });
+      }
+
       const order = await razorpayService.createMembershipOrder(user._id);
 
       res.status(200).json({
@@ -112,6 +122,8 @@ const membershipController = {
       user.membershipReminder7Sent = false;
       user.membershipReminder3Sent = false;
       user.membershipReminder1Sent = false;
+      user.membershipTermsAccepted = true;
+      user.membershipTermsAcceptedAt = now;
       await user.save();
 
       // 5. Store immutable payment record

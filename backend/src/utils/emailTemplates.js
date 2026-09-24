@@ -53,22 +53,31 @@ const baseEmailLayout = ({ title, preheader, content }) => {
 };
 
 const templates = {
-  verifyEmail: ({ name, verificationUrl }) => ({
-    subject: 'Verify your GENZSTYLE Account',
+  verifyEmail: ({ name, verificationUrl, otp }) => ({
+    subject: `Your GENZSTYLE Verification Code: ${otp || 'VERIFY'}`,
     html: baseEmailLayout({
-      title: 'Verify Your Email',
-      preheader: 'Complete your registration to access 100-participant exclusive auctions.',
+      title: 'Verify Your Account',
+      preheader: `Your verification OTP is ${otp}. Complete your registration to access exclusive drops.`,
       content: `
         <h2>Welcome to GENZSTYLE, ${name || 'Collector'}.</h2>
-        <p>You're one step away from accessing curated, 100-participant luxury street and archive drops.</p>
-        <p>Please verify your email address by clicking the button below:</p>
-        <div style="text-align: center;">
-          <a href="${verificationUrl}" class="btn" target="_blank">VERIFY EMAIL</a>
+        <p>You're one step away from accessing curated, 100-participant luxury streetwear and archive drops.</p>
+        
+        ${otp ? `
+        <div style="background-color: #181924; border: 1px solid #D4AF37; border-radius: 12px; padding: 24px; text-align: center; margin: 24px 0;">
+          <div style="font-size: 11px; font-weight: 800; letter-spacing: 3px; color: #D4AF37; text-transform: uppercase; margin-bottom: 8px;">ONE-TIME VERIFICATION CODE</div>
+          <div style="font-size: 36px; font-weight: 900; letter-spacing: 12px; color: #FFFFFF; font-family: monospace;">${otp}</div>
+          <div style="font-size: 12px; color: #9CA3AF; margin-top: 8px;">Enter this 6-digit OTP on your verification screen (valid for 15 minutes).</div>
         </div>
-        <p style="font-size: 13px; color: #9CA3AF;">This verification link will expire in 24 hours. If you did not create this account, please disregard this email.</p>
+        ` : ''}
+
+        <p style="text-align: center; margin-top: 20px;">Or verify instantly with a single click:</p>
+        <div style="text-align: center;">
+          <a href="${verificationUrl}" class="btn" target="_blank">VERIFY VIA ONE-CLICK LINK</a>
+        </div>
+        <p style="font-size: 13px; color: #9CA3AF;">If you did not create this account, please disregard this email.</p>
       `
     }),
-    text: `Welcome to GENZSTYLE! Please verify your email by opening this link: ${verificationUrl}`
+    text: `Your GENZSTYLE verification OTP is: ${otp}. Or verify using this link: ${verificationUrl}`
   }),
 
   passwordReset: ({ name, resetUrl }) => ({

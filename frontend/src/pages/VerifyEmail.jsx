@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, Key } from 'lucide-react';
+import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, Key, ShieldCheck, Mail } from 'lucide-react';
 import api from '../api/client';
 
 const VerifyEmail = () => {
@@ -12,26 +12,40 @@ const VerifyEmail = () => {
   const queryToken = searchParams.get('token') || '';
   const initialEmail = searchParams.get('email') || '';
 
+  const [email, setEmail] = useState(initialEmail);
+  const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [token, setToken] = useState(queryToken);
-  const [resendEmail, setResendEmail] = useState(initialEmail);
+  const [useTokenMode, setUseTokenMode] = useState(!initialEmail && Boolean(queryToken));
+
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
   const [error, setError] = useState(null);
   const [resendMessage, setResendMessage] = useState(null);
   const [verifiedSuccess, setVerifiedSuccess] = useState(false);
 
+  const inputRefs = useRef([]);
+
+  // Auto-verify if full link token in URL
   useEffect(() => {
-    // If token passed in URL query, verify automatically
     if (queryToken) {
-      handleAutoVerify(queryToken);
+      handleTokenVerify(queryToken);
     }
   }, [queryToken]);
 
-  const handleAutoVerify = async (tok) => {
+  // Cooldown countdown
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldown]);
+
+  const handleTokenVerify = async (tok) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await verifyEmail(tok);
+      const res = await verifyEmail({ token: tok });
       if (res.success) {
         setVerifiedSuccess(true);
       }
@@ -42,30 +56,96 @@ const VerifyEmail = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!token.trim()) {
-      setError('Please provide a verification token.');
+  const handleOtpChange = (index, value) => {
+    if (value.length > 1) {
+      // Handle paste
+      const pasted = value.replace(/\D/g, '').slice(0, 6).split('');
+      const newOtp = [...otp];
+      pasted.forEach((char, i) => {
+        newOtp[i] = char;
+      });
+      setOtp(newOtp);
+      const nextIndex = Math.min(pasted.length, 5);
+      inputRefs.current[nextIndex]?.focus();
+      if (newOtp.every((digit) => digit !== '')) {
+        submitOtp(newOtp.join(''));
+      }
       return;
     }
-    handleAutoVerify(token.trim());
+
+    if (!/^\d*$/.test(value)) return;
+
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    if (value && index < 5) {
+      inputRefs.current[index + 1]?.focus();
+    }
+
+    if (newOtp.every((digit) => digit !== '')) {
+      submitOtp(newOtp.join(''));
+    }
   };
 
-  const handleResend = async (e) => {
-    e.preventDefault();
-    if (!resendEmail.trim()) {
-      setError('Please provide your email to resend verification.');
+  const handleKeyDown = (index, e) => {
+    if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const submitOtp = async (code) => {
+    if (!email.trim()) {
+      setError('Please provide your email address.');
       return;
     }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await verifyEmail({
+        email: email.trim(),
+        otp: code,
+      });
+      if (res.success) {
+        setVerifiedSuccess(true);
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Invalid or expired OTP code. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOtpSubmit = (e) => {
+    e.preventDefault();
+    const code = otp.join('');
+    if (code.length < 6) {
+      setError('Please enter all 6 digits of the verification code.');
+      return;
+    }
+    submitOtp(code);
+  };
+
+  const handleResend = async () => {
+    if (!email.trim()) {
+      setError('Please enter your email address to receive a new OTP.');
+      return;
+    }
+
     setResending(true);
     setResendMessage(null);
     setError(null);
 
     try {
-      const res = await api.post('/auth/resend-verification', { email: resendEmail.trim() });
-      setResendMessage(res.data?.message || 'Verification email resent.');
+      const res = await api.post('/auth/resend-verification', { email: email.trim() });
+      setResendMessage(res.data?.message || 'New 6-digit OTP code sent.');
+      setCooldown(30);
+      setOtp(['', '', '', '', '', '']);
+      inputRefs.current[0]?.focus();
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to resend verification.');
+      setError(err.response?.data?.message || 'Failed to resend verification code.');
     } finally {
       setResending(false);
     }
@@ -80,10 +160,10 @@ const VerifyEmail = () => {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h1 className="text-2xl font-black text-white uppercase tracking-wider font-display mb-2">
-              Email Verified!
+              Account Verified!
             </h1>
             <p className="text-xs text-gray-300 leading-relaxed mb-6">
-              Your account has been officially authenticated. You are now eligible to activate membership and reserve seats in 100-participant drops.
+              Your identity has been verified. To join exclusive 100-collector drops, activate your annual ₹49 membership.
             </p>
             <div className="space-y-3">
               <button
@@ -103,15 +183,23 @@ const VerifyEmail = () => {
           </div>
         ) : (
           <>
-            <div className="w-12 h-12 rounded-xl bg-luxury-card border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-2xl shadow-luxury-gold mx-auto mb-3">
-              <Key className="w-6 h-6" />
+            <div className="w-14 h-14 rounded-2xl bg-luxury-card border border-luxury-gold/40 flex items-center justify-center text-luxury-gold shadow-luxury-gold mx-auto mb-4">
+              <ShieldCheck className="w-7 h-7" />
             </div>
+
             <h1 className="text-2xl font-black text-white uppercase tracking-wider font-display mb-1">
-              Verify Account
+              Verify Your Account
             </h1>
-            <p className="text-xs text-gray-400 mb-6">
-              Enter your verification token or click the link received in your inbox
-            </p>
+
+            {email ? (
+              <p className="text-xs text-gray-400 mb-6">
+                Enter the 6-digit code sent to <span className="text-luxury-gold font-mono font-bold">{email}</span>
+              </p>
+            ) : (
+              <p className="text-xs text-gray-400 mb-6">
+                Enter your email address and 6-digit verification code
+              </p>
+            )}
 
             {error && (
               <div className="mb-6 p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs flex items-center gap-2.5 text-left">
@@ -127,54 +215,122 @@ const VerifyEmail = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4 mb-8">
-              <div>
-                <input
-                  type="text"
-                  required
-                  value={token}
-                  onChange={(e) => setToken(e.target.value)}
-                  placeholder="Paste your 64-character verification token"
-                  className="w-full bg-luxury-card border border-luxury-border rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold font-mono transition text-center"
-                />
-              </div>
+            {!useTokenMode ? (
+              <form onSubmit={handleOtpSubmit} className="space-y-6">
+                {!initialEmail && (
+                  <div className="text-left">
+                    <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5 font-mono">
+                      Your Email Address
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="name@example.com"
+                      className="w-full bg-luxury-card border border-luxury-border rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold transition font-mono"
+                    />
+                  </div>
+                )}
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2"
-              >
-                <span>{loading ? 'VERIFYING TOKEN...' : 'CONFIRM VERIFICATION'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+                {/* 6-Digit OTP Boxes */}
+                <div>
+                  <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-3 font-mono">
+                    6-Digit Verification OTP
+                  </label>
+                  <div className="flex justify-center items-center gap-2.5 sm:gap-3">
+                    {otp.map((digit, index) => (
+                      <input
+                        key={index}
+                        ref={(el) => (inputRefs.current[index] = el)}
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={1}
+                        value={digit}
+                        onChange={(e) => handleOtpChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        className="w-11 h-14 sm:w-12 sm:h-16 text-center text-xl sm:text-2xl font-black font-mono text-white bg-luxury-card border border-luxury-border rounded-xl focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold focus:outline-none transition shadow-sm"
+                      />
+                    ))}
+                  </div>
+                </div>
 
-            <div className="border-t border-luxury-border/60 pt-6 text-left">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
-                Didn't receive the email?
-              </h4>
-              <p className="text-[11px] text-gray-400 mb-3 leading-relaxed">
-                Check your spam folder or request a new verification token:
-              </p>
-              <form onSubmit={handleResend} className="flex gap-2">
-                <input
-                  type="email"
-                  required
-                  value={resendEmail}
-                  onChange={(e) => setResendEmail(e.target.value)}
-                  placeholder="your-email@example.com"
-                  className="flex-1 bg-luxury-card border border-luxury-border rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold transition"
-                />
                 <button
                   type="submit"
-                  disabled={resending}
-                  className="px-3.5 py-2 rounded-xl bg-luxury-card border border-luxury-gold/50 text-luxury-gold hover:bg-luxury-gold/10 text-xs font-bold uppercase tracking-wider transition shrink-0 flex items-center gap-1.5"
+                  disabled={loading || otp.join('').length < 6}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
-                  <RefreshCw className={`w-3.5 h-3.5 ${resending ? 'animate-spin' : ''}`} />
-                  <span>Resend</span>
+                  {loading ? (
+                    <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <span>VERIFY OTP & ACTIVATE ACCOUNT</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
+
+                <div className="flex items-center justify-between text-xs pt-2">
+                  <button
+                    type="button"
+                    onClick={handleResend}
+                    disabled={resending || cooldown > 0}
+                    className="text-luxury-gold font-mono hover:underline disabled:opacity-50 disabled:no-underline flex items-center gap-1.5"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${resending ? 'animate-spin' : ''}`} />
+                    <span>{cooldown > 0 ? `Resend OTP in ${cooldown}s` : 'Resend OTP Code'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setUseTokenMode(true)}
+                    className="text-gray-400 hover:text-white transition font-mono text-[11px]"
+                  >
+                    Paste Token Instead →
+                  </button>
+                </div>
               </form>
-            </div>
+            ) : (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleTokenVerify(token.trim());
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5 text-left font-mono">
+                    Paste 64-Character Token
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={token}
+                    onChange={(e) => setToken(e.target.value)}
+                    placeholder="Paste your token from the link"
+                    className="w-full bg-luxury-card border border-luxury-border rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold font-mono transition text-center"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3.5 rounded-xl bg-luxury-gold text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold"
+                >
+                  {loading ? 'VERIFYING...' : 'VERIFY WITH TOKEN'}
+                </button>
+
+                <div className="pt-2 text-center">
+                  <button
+                    type="button"
+                    onClick={() => setUseTokenMode(false)}
+                    className="text-luxury-gold hover:underline text-xs font-mono"
+                  >
+                    ← Back to 6-Digit OTP Mode
+                  </button>
+                </div>
+              </form>
+            )}
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import {
   Sparkles,
@@ -23,6 +23,7 @@ const Membership = () => {
   const [membershipData, setMembershipData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [processingPayment, setProcessingPayment] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchStatus = async () => {
@@ -59,12 +60,17 @@ const Membership = () => {
       return;
     }
 
+    if (!acceptedTerms) {
+      setError('You must review and accept the Membership Terms & Conditions to proceed.');
+      return;
+    }
+
     setProcessingPayment(true);
     setError(null);
 
     try {
-      // 1. Create Real Razorpay Order on Backend
-      const orderRes = await api.post('/membership/create-order');
+      // 1. Create Real Razorpay Order on Backend with Terms Verification
+      const orderRes = await api.post('/membership/create-order', { acceptedTerms: true });
       const { orderId, amount, currency, keyId } = orderRes.data;
 
       // 2. Open Official Razorpay Checkout Modal
@@ -277,18 +283,37 @@ const Membership = () => {
                 <span className="font-mono">{membershipData?.daysRemaining}d left</span>
               </div>
             ) : (
-              <button
-                onClick={handleActivatePayment}
-                disabled={processingPayment}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-luxury-gold via-yellow-400 to-luxury-gold-dark text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 font-display"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>
-                  {processingPayment
-                    ? 'CONNECTING TO RAZORPAY...'
-                    : 'ACTIVATE MEMBERSHIP — ₹49'}
-                </span>
-              </button>
+              <div className="space-y-4">
+                <div className="p-3 rounded-xl border border-luxury-border/80 bg-black/40 flex items-start gap-2.5 text-left">
+                  <input
+                    type="checkbox"
+                    id="acceptMembershipTerms"
+                    checked={acceptedTerms}
+                    onChange={(e) => setAcceptedTerms(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37]"
+                  />
+                  <label htmlFor="acceptMembershipTerms" className="text-[11px] text-gray-300 leading-snug cursor-pointer select-none">
+                    I accept the{' '}
+                    <Link to="/terms" target="_blank" className="text-luxury-gold font-bold underline hover:text-white transition">
+                      Membership Terms
+                    </Link>
+                    : The ₹49 fee is non-refundable, valid for 365 days, and will be forfeited if I win an auction and default on the 48-hour payment deadline.
+                  </label>
+                </div>
+
+                <button
+                  onClick={handleActivatePayment}
+                  disabled={processingPayment || !acceptedTerms}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-luxury-gold via-yellow-400 to-luxury-gold-dark text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 font-display disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>
+                    {processingPayment
+                      ? 'CONNECTING TO RAZORPAY...'
+                      : 'ACTIVATE MEMBERSHIP — ₹49'}
+                  </span>
+                </button>
+              </div>
             )}
           </div>
         </div>

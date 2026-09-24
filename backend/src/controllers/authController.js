@@ -1,23 +1,32 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
-const { generateRandomToken, hashToken, generateJwtToken } = require('../utils/tokenUtils');
+const { generateRandomToken, generateOtp, hashToken, generateJwtToken } = require('../utils/tokenUtils');
 const emailService = require('../services/emailService');
 const auditService = require('../services/auditService');
 const logger = require('../utils/logger');
 
 const authController = {
   /**
-   * User Registration with Real Email Verification Token
+   * User Registration with 6-Digit Email OTP and Terms & Conditions Enforcement
    */
   signup: async (req, res, next) => {
     try {
-      const { name, email, password, confirmPassword } = req.body;
+      const { name, email, phone, password, confirmPassword, acceptedTerms } = req.body;
 
       if (!name || !email || !password || !confirmPassword) {
         return res.status(400).json({
           success: false,
           error: 'MISSING_FIELDS',
           message: 'All fields (Name, Email, Password, Confirm Password) are required.',
+        });
+      }
+
+      // Mandatory Terms & Conditions acceptance
+      if (!acceptedTerms) {
+        return res.status(400).json({
+          success: false,
+          error: 'TERMS_REQUIRED',
+          message: 'You must review and accept the GENZSTYLE Terms & Conditions to create an account.',
         });
       }
 
@@ -53,25 +62,39 @@ const authController = {
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
 
-      // Generate verification token and store SHA-256 hash in DB
+      // Generate verification token and 6-digit OTP
       const rawVerificationToken = generateRandomToken(32);
       const emailVerificationTokenHash = hashToken(rawVerificationToken);
       const emailVerificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
+      const rawOtp = generateOtp(6);
+      const emailVerificationOtpHash = hashToken(rawOtp);
+      const emailVerificationOtpExpires = new Date(Date.now() + 15 * 60 * 1000); // 15 mins
+
       const user = await User.create({
         name: name.trim(),
         email: normalizedEmail,
+        phone: phone ? phone.trim() : '',
         passwordHash,
         emailVerified: false,
         emailVerificationTokenHash,
         emailVerificationExpires,
+        emailVerificationOtpHash,
+        emailVerificationOtpExpires,
+        acceptedTerms: true,
+        termsAcceptedAt: new Date(),
         role: 'USER',
         membershipStatus: 'INACTIVE',
         auctionAccessStatus: 'BLOCKED',
       });
 
-      // Send real verification email
-      emailService.sendVerificationEmail(user, rawVerificationToken).catch((err) => {
+      console.log(`\n==================================================`);
+      console.log(`[VERIFICATION OTP] For: ${normalizedEmail}`);
+      console.log(`>>> OTP CODE: ${rawOtp} <<< (Expires in 15 mins)`);
+      console.log(`==================================================\n`);
+
+      // Send verification email with 6-digit OTP and direct link
+      emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp).catch((err) => {
         logger.error('EMAIL_DISPATCH_FAILED', `Failed to send verification email: ${err.message}`);
       });
 
@@ -86,7 +109,8 @@ const authController = {
 
       res.status(201).json({
         success: true,
-        message: 'Account created successfully. Please check your email to verify your account.',
+        message: 'Account created. We sent a 6-digit verification code to your email.',
+        email: normalizedEmail,
         userId: user._id,
       });
     } catch (error) {
@@ -95,38 +119,58 @@ const authController = {
   },
 
   /**
-   * Verify Email
+   * Verify Email via 6-digit OTP or link Token
    */
   verifyEmail: async (req, res, next) => {
     try {
-      const { token } = req.body;
+      const { token, otp, email } = req.body;
 
-      if (!token) {
+      if (!token && !otp) {
         return res.status(400).json({
           success: false,
-          error: 'TOKEN_REQUIRED',
-          message: 'Verification token is required.',
+          error: 'CODE_REQUIRED',
+          message: 'Verification token or 6-digit OTP code is required.',
         });
       }
 
-      const hashedToken = hashToken(token);
+      let user = null;
 
-      const user = await User.findOne({
-        emailVerificationTokenHash: hashedToken,
-        emailVerificationExpires: { $gt: new Date() },
-      });
+      if (token) {
+        const hashedToken = hashToken(token);
+        user = await User.findOne({
+          emailVerificationTokenHash: hashedToken,
+          emailVerificationExpires: { $gt: new Date() },
+        });
+      } else if (otp) {
+        if (!email) {
+          return res.status(400).json({
+            success: false,
+            error: 'EMAIL_REQUIRED',
+            message: 'Email address is required for OTP verification.',
+          });
+        }
+        const cleanOtp = String(otp).trim();
+        const hashedOtp = hashToken(cleanOtp);
+        user = await User.findOne({
+          email: email.toLowerCase().trim(),
+          emailVerificationOtpHash: hashedOtp,
+          emailVerificationOtpExpires: { $gt: new Date() },
+        });
+      }
 
       if (!user) {
         return res.status(400).json({
           success: false,
-          error: 'INVALID_OR_EXPIRED_TOKEN',
-          message: 'Email verification token is invalid or has expired.',
+          error: 'INVALID_OR_EXPIRED_CODE',
+          message: 'The verification code is invalid or has expired. Please check your email or request a new OTP.',
         });
       }
 
       user.emailVerified = true;
       user.emailVerificationTokenHash = null;
       user.emailVerificationExpires = null;
+      user.emailVerificationOtpHash = null;
+      user.emailVerificationOtpExpires = null;
       await user.save();
 
       const jwtToken = generateJwtToken(user._id, user.role);
@@ -141,7 +185,7 @@ const authController = {
 
       res.status(200).json({
         success: true,
-        message: 'Email verified successfully. You can now access your account and activate membership.',
+        message: 'Account successfully verified! You can now access your dashboard and activate VIP membership.',
         token: jwtToken,
         user,
       });
@@ -151,7 +195,7 @@ const authController = {
   },
 
   /**
-   * Resend Verification Email
+   * Resend Verification OTP & Token
    */
   resendVerification: async (req, res, next) => {
     try {
@@ -171,20 +215,29 @@ const authController = {
       if (!user || user.emailVerified) {
         return res.status(200).json({
           success: true,
-          message: 'If the email exists and is unverified, a new verification link has been sent.',
+          message: 'If the email exists and is unverified, a new verification code has been sent.',
         });
       }
 
       const rawVerificationToken = generateRandomToken(32);
+      const rawOtp = generateOtp(6);
+
       user.emailVerificationTokenHash = hashToken(rawVerificationToken);
       user.emailVerificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      user.emailVerificationOtpHash = hashToken(rawOtp);
+      user.emailVerificationOtpExpires = new Date(Date.now() + 15 * 60 * 1000); // 15 mins
       await user.save();
 
-      emailService.sendVerificationEmail(user, rawVerificationToken).catch(() => {});
+      console.log(`\n==================================================`);
+      console.log(`[VERIFICATION OTP RESENT] For: ${user.email}`);
+      console.log(`>>> NEW OTP CODE: ${rawOtp} <<< (Expires in 15 mins)`);
+      console.log(`==================================================\n`);
+
+      emailService.sendVerificationEmail(user, rawVerificationToken, rawOtp).catch(() => {});
 
       res.status(200).json({
         success: true,
-        message: 'If the email exists and is unverified, a new verification link has been sent.',
+        message: 'A new 6-digit verification code has been dispatched to your email.',
       });
     } catch (error) {
       next(error);
