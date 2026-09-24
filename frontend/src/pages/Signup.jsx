@@ -172,24 +172,40 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* Mandatory Terms & Conditions Checkbox */}
-          <div className="p-3.5 rounded-xl border border-luxury-border/80 bg-luxury-card/50 flex items-start gap-3">
-            <input
-              type="checkbox"
-              id="acceptedTerms"
-              name="acceptedTerms"
-              required
-              checked={formData.acceptedTerms}
-              onChange={handleChange}
-              className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37]"
-            />
-            <label htmlFor="acceptedTerms" className="text-xs text-gray-300 leading-snug cursor-pointer select-none">
-              I agree to the{' '}
-              <Link to="/terms" target="_blank" className="text-luxury-gold font-bold underline hover:text-white transition">
-                GENZSTYLE Terms & Conditions
-              </Link>{' '}
-              (Strict 100-participant limit, ₹10 bid increments, 48h payment deadline, and non-refundable ₹49 fee).
-            </label>
+          {/* Mandatory Age & Mumbai Delivery Affirmation */}
+          <div className="p-3.5 rounded-xl border border-luxury-border/80 bg-luxury-card/50 space-y-2.5">
+            <div className="flex items-start gap-2.5">
+              <input
+                type="checkbox"
+                id="acceptedTerms"
+                name="acceptedTerms"
+                required
+                checked={formData.acceptedTerms}
+                onChange={handleChange}
+                className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37]"
+              />
+              <label htmlFor="acceptedTerms" className="text-xs text-gray-300 leading-snug cursor-pointer select-none">
+                I certify that <strong>I am 18 years of age or older</strong> and agree to the{' '}
+                <Link to="/terms" target="_blank" className="text-luxury-gold font-bold underline hover:text-white transition">
+                  GENZSTYLE Terms & Conditions
+                </Link>.
+              </label>
+            </div>
+
+            <div className="text-[11px] text-gray-400 pl-6 space-y-1 font-mono">
+              <p className="flex items-center gap-1.5 text-luxury-gold/90">
+                <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold"></span>
+                <span><strong>Demographic:</strong> Curated for 18 to 40 collectors.</span>
+              </p>
+              <p className="flex items-center gap-1.5 text-gray-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                <span><strong>Service Zone:</strong> Deliveries strictly in Mumbai (MMR) region.</span>
+              </p>
+              <p className="flex items-center gap-1.5 text-gray-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                <span><strong>Drop Policies:</strong> ₹49 non-refundable pass • 100-cap • 48h winner deadline.</span>
+              </p>
+            </div>
           </div>
 
           <button

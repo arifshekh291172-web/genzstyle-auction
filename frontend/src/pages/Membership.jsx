@@ -284,7 +284,7 @@ const Membership = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="p-3 rounded-xl border border-luxury-border/80 bg-black/40 flex items-start gap-2.5 text-left">
+                <div className="p-3.5 rounded-xl border border-luxury-border/80 bg-black/40 flex items-start gap-2.5 text-left">
                   <input
                     type="checkbox"
                     id="acceptMembershipTerms"
@@ -293,11 +293,11 @@ const Membership = () => {
                     className="mt-0.5 w-4 h-4 rounded border-luxury-border bg-black text-luxury-gold focus:ring-luxury-gold/50 cursor-pointer accent-[#D4AF37]"
                   />
                   <label htmlFor="acceptMembershipTerms" className="text-[11px] text-gray-300 leading-snug cursor-pointer select-none">
-                    I accept the{' '}
+                    I certify that I am <strong>18+ years of age</strong> and accept the{' '}
                     <Link to="/terms" target="_blank" className="text-luxury-gold font-bold underline hover:text-white transition">
                       Membership Terms
                     </Link>
-                    : The ₹49 fee is non-refundable, valid for 365 days, and will be forfeited if I win an auction and default on the 48-hour payment deadline.
+                    : ₹49 fee is 100% non-refundable (365 days), physical drop fulfillment is strictly confined to the <strong>Mumbai Metropolitan Region (MMR)</strong>, and default on 48h winner payment permanently forfeits membership.
                   </label>
                 </div>
 
