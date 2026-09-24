@@ -2,10 +2,45 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2308080A'/><path d='M25 30 L50 20 L75 30 L75 70 L50 80 L25 70 Z' fill='none' stroke='%23D4AF37' stroke-width='6'/><text x='50' y='58' font-size='28' font-family='sans-serif' font-weight='900' fill='%23F8F9FA' text-anchor='middle'>G</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>GENZSTYLE — Limited. Competitive. Yours.</title>
-    <meta name="description" content="India's exclusive real-time auction marketplace for limited streetwear and archive fashion. 100 collectors per drop. ₹10 bid increments." />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>GENZSTYLE — Street Luxury & Designer Auction Drops | Mumbai, India</title>
+    <meta name="title" content="GENZSTYLE — Street Luxury & Designer Auction Drops | Mumbai, India" />
+    <meta name="description" content="GENZSTYLE is India's premier real-time auction marketplace for limited streetwear, designer luxury pieces, archival fashion, and rare sneakers. Strictly 100 collectors per drop with atomic ₹10 bid increments and Mumbai delivery." />
+    <meta name="keywords" content="GENZSTYLE, Genz Style, GenzStyle auction, Arif Auction, streetwear auction India, designer luxury auction Mumbai, sneaker drops auction, limited edition clothing auction, archival fashion bidding, 100 collector auction, GenZ street fashion, authenticated luxury drops" />
+    <meta name="author" content="GENZSTYLE Concierge" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#08080A" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://genzstyle-auction.onrender.com/" />
+
+    <!-- Geographic & Local SEO (Mumbai, Maharashtra, India) -->
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Mumbai" />
+    <meta name="geo.position" content="19.0760;72.8777" />
+    <meta name="ICBM" content="19.0760, 72.8777" />
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://genzstyle-auction.onrender.com/" />
+    <meta property="og:site_name" content="GENZSTYLE Marketplace" />
+    <meta property="og:title" content="GENZSTYLE — Limited. Competitive. Yours. Street Luxury Auctions" />
+    <meta property="og:description" content="India's exclusive real-time auction marketplace for limited streetwear, designer apparel, and sneakers. Strictly 100 collectors per drop. ₹10 bid increments." />
+    <meta property="og:image" content="https://genzstyle-auction.onrender.com/favicon.svg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://genzstyle-auction.onrender.com/" />
+    <meta name="twitter:title" content="GENZSTYLE — Street Luxury & Designer Auction Marketplace" />
+    <meta name="twitter:description" content="Exclusive 100-collector real-time auction drops for street luxury, rare sneakers, and archival designer pieces in Mumbai." />
+    <meta name="twitter:image" content="https://genzstyle-auction.onrender.com/favicon.svg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2308080A'/><path d='M25 30 L50 20 L75 30 L75 70 L50 80 L25 70 Z' fill='none' stroke='%23D4AF37' stroke-width='6'/><text x='50' y='58' font-size='28' font-family='sans-serif' font-weight='900' fill='%23F8F9FA' text-anchor='middle'>G</text></svg>" />
     
     <!-- Google Fonts: Plus Jakarta Sans & Syne -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +49,66 @@
     
     <!-- Razorpay Official Checkout SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- Structured Data (JSON-LD) for Google Rich Snippets & Top Rankings -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://genzstyle-auction.onrender.com/#organization",
+          "name": "GENZSTYLE",
+          "alternateName": ["Genz Style", "GENZSTYLE Auction", "Arif Auction"],
+          "url": "https://genzstyle-auction.onrender.com",
+          "logo": "https://genzstyle-auction.onrender.com/favicon.svg",
+          "description": "India's premier real-time auction marketplace for limited streetwear, designer apparel, sneakers, and archival luxury pieces.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bandra West",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400050",
+            "addressCountry": "IN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "concierge@genzstyle.com",
+            "areaServed": "IN-MH"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://genzstyle-auction.onrender.com/#website",
+          "url": "https://genzstyle-auction.onrender.com",
+          "name": "GENZSTYLE Auction Marketplace",
+          "description": "Exclusive real-time streetwear auctions with strictly 100 participants per drop.",
+          "publisher": {
+            "@id": "https://genzstyle-auction.onrender.com/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://genzstyle-auction.onrender.com/auctions?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "OnlineBusiness",
+          "@id": "https://genzstyle-auction.onrender.com/#store",
+          "name": "GENZSTYLE Luxury Auctions",
+          "url": "https://genzstyle-auction.onrender.com",
+          "priceRange": "₹₹₹₹",
+          "currenciesAccepted": "INR",
+          "paymentAccepted": "UPI, Credit Card, Debit Card, Net Banking",
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Mumbai Metropolitan Region (MMR)"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-luxury-black text-luxury-white antialiased selection:bg-luxury-gold selection:text-black min-h-screen">
     <div id="root"></div>

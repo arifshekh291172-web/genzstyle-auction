@@ -94,6 +94,25 @@ const path = require('path');
 const fs = require('fs');
 const frontendDistPath = path.join(__dirname, '../../frontend/dist');
 
+// Dedicated SEO routes for search engines (Googlebot, Bingbot)
+app.get('/robots.txt', (req, res) => {
+  const robotsPath = path.join(__dirname, '../../frontend/public/robots.txt');
+  if (fs.existsSync(robotsPath)) {
+    res.type('text/plain');
+    return res.sendFile(robotsPath);
+  }
+  res.type('text/plain').send("User-agent: *\nAllow: /\nSitemap: https://genzstyle-auction.onrender.com/sitemap.xml\n");
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  const sitemapPath = path.join(__dirname, '../../frontend/public/sitemap.xml');
+  if (fs.existsSync(sitemapPath)) {
+    res.type('application/xml');
+    return res.sendFile(sitemapPath);
+  }
+  res.status(404).send('Sitemap not found');
+});
+
 if (fs.existsSync(frontendDistPath)) {
   app.use(express.static(frontendDistPath));
 
