@@ -1,12 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400;1,14..32,600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY SYSTEM — GENZSTYLE (Strictly Inter)
+   ========================================================================== */
+
+html,
+body,
+#root,
+* {
+  font-family: 'Inter', sans-serif !important;
+}
 
 @layer base {
   * {
     border-color: #2A2C3C;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
   }
+
   html, body {
     max-width: 100vw;
     width: 100%;
@@ -14,27 +29,162 @@
     position: relative;
     background-color: #08080A;
     color: #F8F9FA;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif !important;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-optical-sizing: auto;
     -webkit-overflow-scrolling: touch;
     touch-action: manipulation;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   #root {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
     min-height: 100vh;
+    font-family: 'Inter', sans-serif !important;
   }
-  h1, h2, h3, .font-display {
-    font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+
+  /* Headings Hierarchy */
+  h1 {
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    font-family: 'Inter', sans-serif !important;
     overflow-wrap: break-word;
   }
-  p, span, a, label {
+
+  h2 {
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+    font-family: 'Inter', sans-serif !important;
     overflow-wrap: break-word;
   }
+
+  h3 {
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    overflow-wrap: break-word;
+  }
+
+  h4, h5, h6 {
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    overflow-wrap: break-word;
+  }
+
+  /* Body & Paragraphs */
+  p {
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif !important;
+    overflow-wrap: break-word;
+  }
+
+  /* Labels */
+  label {
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+    font-family: 'Inter', sans-serif !important;
+    overflow-wrap: break-word;
+  }
+
+  /* Buttons & Controls */
+  button {
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Form Inputs & Interactive */
+  input,
+  textarea,
+  select {
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Images */
   img {
     max-width: 100%;
     height: auto;
   }
+}
+
+/* ==========================================================================
+   COMPONENT TYPOGRAPHY SPECIALIZATIONS (Prices, Timers, Tabular Nums)
+   ========================================================================== */
+
+/* Prices: 700 weight with tight letter spacing */
+.font-price,
+.price-display,
+[data-price] {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Hero Numbers / Major Prices: 800 weight */
+.font-hero-num,
+.hero-price {
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Auction numbers: Tabular numeric alignment */
+.auction-num,
+.bid-amount,
+[data-auction-num] {
+  font-weight: 700 !important;
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1, "cv02", "cv03", "cv04", "cv11" !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Timers: 600 weight with Tabular nums to eliminate jitter */
+.timer-digits,
+.countdown-timer,
+[data-timer] {
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1, "cv02", "cv03", "cv04", "cv11" !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Navigation items: 500 weight */
+nav,
+nav a,
+nav button,
+.nav-link,
+.mobile-nav-item {
+  font-weight: 500 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Product names: 600 weight */
+.product-title,
+.product-name,
+[data-product-name] {
+  font-weight: 600 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Small metadata / Secondary text: 400 weight */
+.metadata-text,
+small,
+.caption-text {
+  font-weight: 400 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Tables, Modals, Toasts, Badges, Admin Dashboard & Empty States */
+table, th, td,
+.modal-content,
+.toast-notification,
+.badge,
+.tab-button,
+.dashboard-widget,
+.admin-card {
+  font-family: 'Inter', sans-serif !important;
 }
 
 /* Custom luxury scrollbar */

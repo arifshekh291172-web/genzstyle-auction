@@ -35,8 +35,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'sans-serif'],
-        display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        display: ['Inter', 'sans-serif'],
+        mono: ['Inter', 'sans-serif'],
       },
       boxShadow: {
         'luxury-gold': '0 0 25px -5px rgba(212, 175, 55, 0.25)',
