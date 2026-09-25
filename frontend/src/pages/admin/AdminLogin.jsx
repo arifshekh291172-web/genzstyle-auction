@@ -48,13 +48,6 @@ const AdminLogin = () => {
     }
   };
 
-  const handleFillCredentials = () => {
-    setFormData({
-      email: 'admin@genzstyle.com',
-      password: 'AdminSecurePassword123!',
-    });
-    setError('');
-  };
 
   return (
     <div className="min-h-screen bg-[#070709] flex flex-col justify-center py-8 sm:py-12 px-3 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
@@ -126,7 +119,7 @@ const AdminLogin = () => {
               </div>
             </div>
 
-            <div className="pt-2 space-y-3">
+            <div className="pt-2">
               <button
                 type="submit"
                 disabled={loading}
@@ -140,14 +133,6 @@ const AdminLogin = () => {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
-              </button>
-
-              <button
-                type="button"
-                onClick={handleFillCredentials}
-                className="w-full py-2.5 px-3 rounded-lg border border-luxury-border/60 bg-white/5 hover:bg-white/10 text-xs font-mono text-gray-300 transition flex items-center justify-center gap-2"
-              >
-                <span>🔑 Auto-Fill Default Admin Credentials</span>
               </button>
             </div>
           </form>

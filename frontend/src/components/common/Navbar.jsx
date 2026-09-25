@@ -68,13 +68,13 @@ const Navbar = () => {
 
       {/* Main Desktop & Mobile Header */}
       <header className="sticky top-0 z-50 glass-nav border-b border-[#1E202B]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-4">
           {/* Logo & Brand */}
-          <Link to="/" className="flex items-center group shrink-0 py-1">
+          <Link to="/" className="flex items-center group shrink-0 py-1.5">
             <img
               src="/images/logo.png"
               alt="GENZSTYLE - Bid Now. Wear Tomorrow."
-              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
+              className="h-11 sm:h-13 md:h-16 w-auto max-w-[200px] sm:max-w-[260px] md:max-w-[320px] object-contain transition-transform duration-200 group-hover:scale-105 filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.2)]"
             />
           </Link>
 
