@@ -60,7 +60,6 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-[#070709] flex flex-col justify-center py-8 sm:py-12 px-3 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
       {/* Background ambient security glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[600px] max-w-full h-[350px] bg-red-950/15 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[280px] sm:w-[400px] max-w-full h-[200px] bg-luxury-gold/10 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div className="flex justify-center mb-6">

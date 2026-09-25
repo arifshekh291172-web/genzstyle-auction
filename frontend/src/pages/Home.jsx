@@ -49,44 +49,40 @@ const Home = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen royal-bg-atmosphere">
+    <div className="min-h-screen bg-[#07070A] overflow-x-clip">
       {/* HERO SECTION */}
-      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-28 md:pt-28 md:pb-36 overflow-hidden border-b border-luxury-gold/20 royal-spotlight">
-        {/* Background Ambient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[800px] max-w-full h-[450px] bg-luxury-gold/15 blur-[160px] rounded-full pointer-events-none"></div>
-
+      <section className="relative pt-10 pb-12 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 border-b border-[#1E202B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          {/* Eyebrow Pill with Emblem */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-luxury-gold/40 bg-luxury-gold/10 text-luxury-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.22em] mb-8 animate-fade-in shadow-[0_0_24px_rgba(212,175,55,0.25)] max-w-full">
-            <img src="/images/logo-icon.png" alt="Emblem" className="w-4 h-4 object-contain shrink-0" />
-            <span className="truncate">HAUTE ARCHIVE SALON &bull; MUMBAI, EST. 2026 &bull; STRICTLY 100 VERIFIED SEATS</span>
+          {/* Eyebrow Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#1E202B] bg-[#0E0F17] text-[#D4AF37] text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] mb-6">
+            <Sparkles className="w-3.5 h-3.5 shrink-0 text-[#D4AF37]" />
+            <span>EST. 2026 &bull; STRICTLY 100 VERIFIED COLLECTORS</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-0.03em] text-white uppercase leading-[0.92] mb-6 font-display">
-            HAUTE ARCHIVE <br />
-            <span className="luxury-text-gold">PRIVATE AUCTIONS</span>
+          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white uppercase leading-[1.05] mb-5 font-display">
+            EXCLUSIVE <span className="text-[#D4AF37]">PRIVATE DROPS</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-lg md:text-xl text-gray-300 font-normal tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2 leading-relaxed">
-            India's premier collector salon. Curated archival grails, bespoke luxury streetwear, and avant-garde footwear accessible only to 100 verified collectors with atomic ₹10 bid increments.
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 px-2 leading-relaxed">
+            Curated archival luxury streetwear, rare footwear, and avant-garde designer pieces. Strictly limited to 100 verified collectors with atomic ₹10 bid increments.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5 max-w-md mx-auto sm:max-w-none">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none">
             <Link
               to="/auctions"
-              className="w-full sm:w-auto px-8 sm:px-10 py-4 rounded-xl luxury-gradient-gold text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 transition shadow-[0_0_28px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2.5 luxury-shimmer-btn"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#D4AF37] hover:bg-[#E5C048] text-black font-bold text-xs sm:text-sm uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2"
             >
-              <span>ENTER DROPS VAULT</span>
+              <span>EXPLORE ALL DROPS</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             {!hasActiveMembership && (
               <Link
                 to="/membership"
-                className="w-full sm:w-auto px-8 sm:px-10 py-4 rounded-xl border border-luxury-gold/50 text-luxury-gold hover:bg-luxury-gold/15 font-bold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 backdrop-blur-md shadow-sm"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-[#2A2C3C] hover:border-[#D4AF37]/50 text-gray-200 hover:text-white font-semibold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 bg-[#0E0F17]"
               >
                 <span>ACTIVATE VIP — ₹49/YR</span>
               </Link>
@@ -94,108 +90,78 @@ const Home = () => {
           </div>
 
           {/* Key Rule Indicators */}
-          <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-5 max-w-5xl mx-auto pt-8 sm:pt-10 border-t border-luxury-border/60">
-            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
-              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+          <div className="mt-12 sm:mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto pt-8 border-t border-[#1E202B]">
+            <div className="bg-[#0E0F17] border border-[#1E202B] p-4 sm:p-5 rounded-xl text-left hover:border-[#D4AF37]/40 transition">
+              <span className="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-[0.16em] block">
                 RULE 01
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">100 Seat Cap</h4>
-              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Strict cap atomically locked per drop room</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">100 Seat Cap</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Strict cap locked per drop room</p>
             </div>
 
-            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
-              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+            <div className="bg-[#0E0F17] border border-[#1E202B] p-4 sm:p-5 rounded-xl text-left hover:border-[#D4AF37]/40 transition">
+              <span className="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-[0.16em] block">
                 RULE 02
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">+₹10 Increment</h4>
-              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Ultra-fast real-time server verified bidding</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">+₹10 Increment</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Authoritative server-side bidding</p>
             </div>
 
-            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
-              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+            <div className="bg-[#0E0F17] border border-[#1E202B] p-4 sm:p-5 rounded-xl text-left hover:border-[#D4AF37]/40 transition">
+              <span className="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-[0.16em] block">
                 RULE 03
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">48-Hr Settle</h4>
-              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Winner checkout window or item rolls over</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">48-Hr Settle</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Winner checkout window</p>
             </div>
 
-            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
-              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+            <div className="bg-[#0E0F17] border border-[#1E202B] p-4 sm:p-5 rounded-xl text-left hover:border-[#D4AF37]/40 transition">
+              <span className="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-[0.16em] block">
                 RULE 04
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">₹49 Annual Pass</h4>
-              <p className="text-[11px] text-gray-400 mt-1 leading-snug">365 days of unrestricted drop access</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">₹49 Annual Pass</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">365 days of full drop access</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* HAUTE SALON MARQUEE TICKER */}
-      <div className="border-b border-luxury-gold/25 bg-[#08090E] py-2.5 overflow-hidden shadow-inner">
-        <div className="flex items-center justify-around gap-6 whitespace-nowrap text-[10px] sm:text-[11px] font-bold text-luxury-gold/90 tracking-[0.25em] uppercase font-mono overflow-x-auto scrollbar-none px-4">
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shadow-[0_0_8px_#D4AF37]"></span>
-            STRICT 100-SEAT ROOM CAP
-          </span>
-          <span className="text-gray-700">&bull;</span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shadow-[0_0_8px_#D4AF37]"></span>
-            ATOMIC ₹10 BID LOCK
-          </span>
-          <span className="text-gray-700">&bull;</span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shadow-[0_0_8px_#D4AF37]"></span>
-            100% ARCHIVAL PROVENANCE
-          </span>
-          <span className="text-gray-700">&bull;</span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shadow-[0_0_8px_#D4AF37]"></span>
-            48-HOUR WINNER SETTLEMENT
-          </span>
-          <span className="text-gray-700 hidden md:inline">&bull;</span>
-          <span className="hidden md:flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold shadow-[0_0_8px_#D4AF37]"></span>
-            MUMBAI HAND CONCIERGE
-          </span>
-        </div>
-      </div>
-
       {/* ROYAL VIP PROVENANCE BAR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
-        <div className="royal-card rounded-2xl p-4 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-luxury-border/50 shadow-2xl">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8 sm:my-10 relative z-10">
+        <div className="bg-[#0E0F17] border border-[#1E202B] rounded-xl p-4 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-[#1E202B] shadow-xl">
           <div className="flex items-center gap-3 pt-2 sm:pt-0">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-[#151722] border border-[#1E202B] flex items-center justify-center text-[#D4AF37] shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Provenance</div>
+              <div className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-semibold">Provenance</div>
               <div className="text-xs sm:text-sm font-bold text-white">100% Authenticated</div>
             </div>
           </div>
           <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-[#151722] border border-[#1E202B] flex items-center justify-center text-[#D4AF37] shrink-0">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Exclusivity</div>
+              <div className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-semibold">Exclusivity</div>
               <div className="text-xs sm:text-sm font-bold text-white">Strict 100 Seat Cap</div>
             </div>
           </div>
           <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-[#151722] border border-[#1E202B] flex items-center justify-center text-[#D4AF37] shrink-0">
               <Gavel className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Fair Bidding</div>
+              <div className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-semibold">Fair Bidding</div>
               <div className="text-xs sm:text-sm font-bold text-white">₹10 Atomic Step</div>
             </div>
           </div>
           <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-[#151722] border border-[#1E202B] flex items-center justify-center text-[#D4AF37] shrink-0">
               <Award className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Delivery</div>
+              <div className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-semibold">Delivery</div>
               <div className="text-xs sm:text-sm font-bold text-white">Mumbai Hand Concierge</div>
             </div>
           </div>
@@ -221,10 +187,10 @@ const Home = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold tracking-wider transition shrink-0 uppercase ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition shrink-0 uppercase ${
                   selectedCategory === cat
-                    ? 'bg-luxury-gold text-black shadow-luxury-gold'
-                    : 'bg-luxury-surface text-gray-400 hover:text-white border border-luxury-border/80'
+                    ? 'bg-white text-black font-bold shadow-md'
+                    : 'bg-[#0E0F17] text-gray-400 hover:text-white border border-[#1E202B]'
                 }`}
               >
                 {cat}

@@ -122,8 +122,7 @@ const AppLayout = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-luxury-black text-white">
-      <UrgencyTicker />
+    <div className="flex flex-col min-h-screen bg-[#07070A] text-white">
       <Navbar />
       <main className="flex-1">
         <Routes>

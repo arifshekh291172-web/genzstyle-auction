@@ -92,11 +92,11 @@ const LiveMarketingToaster = () => {
   return (
     <aside 
       aria-label="Real-time market updates"
-      className="fixed bottom-20 md:bottom-6 left-3 xs:left-6 z-50 max-w-[320px] xs:max-w-[360px] animate-fade-in transition-all duration-300 pointer-events-auto"
+      className="fixed bottom-20 md:bottom-6 right-3 xs:right-6 z-50 max-w-[320px] xs:max-w-[360px] animate-fade-in transition-all duration-300 pointer-events-auto"
     >
-      <div className="bg-luxury-surface/95 border border-luxury-border/90 backdrop-blur-xl p-3.5 xs:p-4 rounded-2xl shadow-2xl shadow-black/80 flex items-start gap-3 relative overflow-hidden">
-        {/* Ambient pulse glow */}
-        <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-luxury-gold/10 rounded-full blur-xl pointer-events-none" />
+      <div className="bg-[#0E0F17]/95 border border-[#1E202B] backdrop-blur-xl p-3.5 xs:p-4 rounded-2xl shadow-2xl shadow-black/90 flex items-start gap-3 relative overflow-hidden">
+        {/* Subtle Ambient Pulse */}
+        <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-white/5 rounded-full blur-xl pointer-events-none" />
 
         {/* Icon Badge */}
         <div className={`p-2.5 rounded-xl bg-luxury-card border border-luxury-border shrink-0 ${currentEvent.color}`}>

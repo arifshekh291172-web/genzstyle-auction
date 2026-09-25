@@ -192,9 +192,9 @@ const Membership = () => {
       {/* Main Membership Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center max-w-4xl mx-auto">
         {/* Luxury Gold Membership Card (7 cols) */}
-        <div className="md:col-span-7 royal-card border-2 border-luxury-gold/50 rounded-3xl p-5 xs:p-7 sm:p-9 shadow-[0_0_35px_rgba(212,175,55,0.2)] relative overflow-hidden flex flex-col justify-between min-h-[400px]">
-          {/* Decorative Gold Sheen Background */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-luxury-gold/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="md:col-span-7 royal-card border border-[#D4AF37]/30 rounded-3xl p-5 xs:p-7 sm:p-9 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[400px]">
+          {/* Subtle Clean Ambient Sheen */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/[0.03] rounded-full blur-3xl pointer-events-none"></div>
 
           <div>
             <div className="flex items-center justify-between mb-6">
