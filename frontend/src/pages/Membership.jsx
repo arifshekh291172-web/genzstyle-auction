@@ -202,7 +202,7 @@ const Membership = () => {
                 <img
                   src="/images/logo.png"
                   alt="GENZSTYLE"
-                  className="h-9 sm:h-10 w-auto object-contain"
+                  className="h-12 sm:h-14 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
                 />
               </div>
               <Badge status={hasActiveMembership ? 'ACTIVE' : 'INACTIVE'} size="sm" />

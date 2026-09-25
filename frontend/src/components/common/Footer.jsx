@@ -56,11 +56,11 @@ const Footer = () => {
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         <div className="md:col-span-2">
-          <div className="mb-4">
+          <div className="mb-5">
             <img
               src="/images/logo.png"
               alt="GENZSTYLE - Bid Now. Wear Tomorrow."
-              className="h-11 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
+              className="h-14 sm:h-16 md:h-20 w-auto object-contain filter drop-shadow-[0_2px_16px_rgba(212,175,55,0.3)]"
             />
           </div>
           <p className="text-xs text-gray-400 leading-relaxed max-w-sm mb-4">

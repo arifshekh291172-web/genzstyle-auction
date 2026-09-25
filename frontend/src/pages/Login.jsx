@@ -56,11 +56,11 @@ const Login = () => {
       <div className="w-full max-w-md bg-luxury-surface border border-luxury-border rounded-2xl p-4 xs:p-6 sm:p-8 shadow-card-dark">
         {/* Brand header */}
         <div className="text-center mb-6 sm:mb-8">
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-5">
             <img
               src="/images/logo.png"
               alt="GENZSTYLE - Bid Now. Wear Tomorrow."
-              className="h-12 sm:h-14 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
+              className="h-16 sm:h-20 w-auto object-contain filter drop-shadow-[0_2px_18px_rgba(212,175,55,0.35)]"
             />
           </div>
           <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider font-display">
