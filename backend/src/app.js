@@ -88,13 +88,14 @@ app.get('/api/health/test-email', async (req, res) => {
   const targetEmail = req.query.to || env.SMTP_USER;
   try {
     const { sendMail, transporter } = require('./config/email');
-    if (!transporter) {
+    if (!transporter && !env.BREVO_API_KEY && !env.RESEND_API_KEY) {
       return res.status(500).json({
         success: false,
-        error: 'TRANSPORTER_NOT_INITIALIZED',
-        message: 'SMTP credentials missing on server. Please check SMTP_USER and SMTP_PASSWORD on Render.',
-        userConfigured: Boolean(env.SMTP_USER),
-        passConfigured: Boolean(env.SMTP_PASSWORD),
+        error: 'EMAIL_CONFIG_MISSING',
+        message: 'No email provider configured. Please set BREVO_API_KEY or SMTP_USER/PASSWORD.',
+        brevoConfigured: Boolean(env.BREVO_API_KEY),
+        resendConfigured: Boolean(env.RESEND_API_KEY),
+        smtpConfigured: Boolean(env.SMTP_USER && env.SMTP_PASSWORD),
       });
     }
 
