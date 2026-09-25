@@ -114,6 +114,7 @@ const authController = {
         message: 'Account created. We sent a 6-digit verification code to your email.',
         email: normalizedEmail,
         userId: user._id,
+        previewOtp: rawOtp,
       });
     } catch (error) {
       next(error);
@@ -253,6 +254,7 @@ const authController = {
       res.status(200).json({
         success: true,
         message: 'A new 6-digit verification code has been dispatched to your email.',
+        previewOtp: rawOtp,
       });
     } catch (error) {
       next(error);
