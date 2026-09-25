@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSearchParams, useNavigate, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, Key, ShieldCheck, Mail, Zap } from 'lucide-react';
+import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, Key, ShieldCheck, Mail } from 'lucide-react';
 import api from '../api/client';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const { verifyEmail } = useAuth();
 
   const queryToken = searchParams.get('token') || '';
@@ -15,7 +14,6 @@ const VerifyEmail = () => {
 
   const [email, setEmail] = useState(initialEmail);
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [devOtp, setDevOtp] = useState(location.state?.previewOtp || '');
   const [token, setToken] = useState(queryToken);
   const [useTokenMode, setUseTokenMode] = useState(!initialEmail && Boolean(queryToken));
 
@@ -145,9 +143,6 @@ const VerifyEmail = () => {
     try {
       const res = await api.post('/auth/resend-verification', { email: email.trim() });
       setResendMessage(res.data?.message || 'New 6-digit OTP code sent.');
-      if (res.data?.previewOtp) {
-        setDevOtp(res.data.previewOtp);
-      }
       setCooldown(30);
       setOtp(['', '', '', '', '', '']);
       inputRefs.current[0]?.focus();
@@ -224,30 +219,6 @@ const VerifyEmail = () => {
 
             {!useTokenMode ? (
               <form onSubmit={handleOtpSubmit} className="space-y-6">
-                {devOtp && (
-                  <div className="p-3.5 rounded-xl bg-luxury-gold/10 border border-luxury-gold/50 text-left flex items-center justify-between shadow-lg">
-                    <div>
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-luxury-gold uppercase tracking-widest font-mono">
-                        <Zap className="w-3 h-3 text-luxury-gold animate-pulse" />
-                        <span>Instant Access Code</span>
-                      </div>
-                      <div className="text-base font-black text-white font-mono tracking-widest mt-0.5">
-                        {devOtp}
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const digits = String(devOtp).split('').slice(0, 6);
-                        setOtp(digits);
-                        submitOtp(String(devOtp));
-                      }}
-                      className="px-3 py-1.5 bg-luxury-gold text-black font-extrabold text-xs rounded-lg hover:brightness-110 transition shadow-sm font-sans"
-                    >
-                      Auto-Fill & Verify
-                    </button>
-                  </div>
-                )}
                 {!initialEmail && (
                   <div className="text-left">
                     <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5 font-mono">
@@ -318,21 +289,6 @@ const VerifyEmail = () => {
                     className="text-gray-400 hover:text-white transition text-[11px]"
                   >
                     Paste Token Instead →
-                  </button>
-                </div>
-
-                <div className="pt-1 text-center">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const code = '777777';
-                      setOtp(code.split(''));
-                      submitOtp(code);
-                    }}
-                    className="inline-flex items-center gap-1.5 text-[11px] text-gray-400 hover:text-luxury-gold transition font-medium bg-luxury-card/60 hover:bg-luxury-card px-3 py-1.5 rounded-lg border border-luxury-border/80"
-                  >
-                    <Zap className="w-3 h-3 text-luxury-gold" />
-                    <span>Free Instant Verification (Use Master Code: 777777)</span>
                   </button>
                 </div>
               </form>

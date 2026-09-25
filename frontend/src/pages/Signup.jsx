@@ -50,10 +50,8 @@ const Signup = () => {
     try {
       const res = await signup(formData);
       if (res.success) {
-        // Navigate directly to OTP verification page with pre-filled email and previewOtp
-        navigate(`/verify-email?email=${encodeURIComponent(formData.email.trim())}`, {
-          state: { previewOtp: res.previewOtp },
-        });
+        // Navigate directly to OTP verification page with pre-filled email
+        navigate(`/verify-email?email=${encodeURIComponent(formData.email.trim())}`);
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please check your details.');
