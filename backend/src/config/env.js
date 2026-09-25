@@ -55,7 +55,7 @@ module.exports = {
   SMTP_PASSWORD: (process.env.SMTP_PASSWORD || process.env.SMTP_PASS || process.env.EMAIL_PASS || '').trim(),
   EMAIL_FROM: (process.env.EMAIL_FROM || '').trim(),
   RESEND_API_KEY: (process.env.RESEND_API_KEY || '').trim(),
-  BREVO_API_KEY: (process.env.BREVO_API_KEY || '').trim(),
+  BREVO_API_KEY: (process.env.BREVO_API_KEY || process.env.SENDINBLUE_API_KEY || process.env.BREVO_KEY || '').trim(),
   RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID || '',
   RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || '',
   RAZORPAY_WEBHOOK_SECRET: process.env.RAZORPAY_WEBHOOK_SECRET || '',

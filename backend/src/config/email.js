@@ -122,6 +122,7 @@ const sendViaBrevo = ({ apiKey, to, subject, html, text }) => {
         headers: {
           'api-key': apiKey,
           'Content-Type': 'application/json',
+          accept: 'application/json',
           'Content-Length': Buffer.byteLength(payload),
         },
         timeout: 6000,
