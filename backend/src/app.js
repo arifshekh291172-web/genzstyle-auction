@@ -80,6 +80,52 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Email Diagnostic Endpoint to verify Render SMTP status
+app.get('/api/health/test-email', async (req, res) => {
+  const targetEmail = req.query.to || env.SMTP_USER;
+  try {
+    const { sendMail, transporter } = require('./config/email');
+    if (!transporter) {
+      return res.status(500).json({
+        success: false,
+        error: 'TRANSPORTER_NOT_INITIALIZED',
+        message: 'SMTP credentials missing on server. Please check SMTP_USER and SMTP_PASSWORD on Render.',
+        userConfigured: Boolean(env.SMTP_USER),
+        passConfigured: Boolean(env.SMTP_PASSWORD),
+      });
+    }
+
+    const testOtp = Math.floor(100000 + Math.random() * 900000);
+    const result = await sendMail({
+      to: targetEmail,
+      subject: `GENZSTYLE Test Verification Code: ${testOtp}`,
+      text: `Your test verification code is ${testOtp}`,
+      html: `<div style="font-family:sans-serif;padding:24px;background:#08080A;color:#fff;border:1px solid #D4AF37;border-radius:12px;">
+        <h2 style="color:#D4AF37;margin-top:0;">GENZSTYLE TEST EMAIL</h2>
+        <p>Your test verification code is: <strong style="font-size:20px;letter-spacing:4px;color:#D4AF37;">${testOtp}</strong></p>
+        <p style="color:#888;">Render server SMTP is 100% active and running.</p>
+      </div>`,
+    });
+
+    res.json({
+      success: true,
+      message: `Test email successfully dispatched to ${targetEmail}`,
+      details: result,
+      smtpUser: env.SMTP_USER,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: 'EMAIL_SEND_FAILED',
+      message: err.message,
+      code: err.code || null,
+      response: err.response || null,
+      smtpUser: env.SMTP_USER,
+      passConfigured: Boolean(env.SMTP_PASSWORD),
+    });
+  }
+});
+
 // Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

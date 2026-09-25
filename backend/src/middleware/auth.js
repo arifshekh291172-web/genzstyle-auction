@@ -60,6 +60,10 @@ const authenticate = async (req, res, next) => {
   }
 };
 
+const { requireAdmin } = require('./admin');
+
 module.exports = {
   authenticate,
+  requireAdmin,
+  authorizeAdmin: requireAdmin,
 };
