@@ -19,6 +19,9 @@ const marketingRoutes = require('./routes/marketingRoutes');
 
 const app = express();
 
+// Trust proxy - Required for Render and reverse proxies so express-rate-limit reads client IP correctly
+app.set('trust proxy', 1);
+
 // Security Headers with Helmet
 app.use(
   helmet({

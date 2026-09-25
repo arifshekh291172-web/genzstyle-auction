@@ -8,6 +8,7 @@ const apiLimiter = rateLimit({
   max: 300, // max 300 requests per 15 min per IP
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     success: false,
     error: 'TOO_MANY_REQUESTS',
@@ -23,6 +24,7 @@ const loginLimiter = rateLimit({
   max: 10, // 10 attempts
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     success: false,
     error: 'RATE_LIMIT_LOGIN',
@@ -35,9 +37,10 @@ const loginLimiter = rateLimit({
  */
 const signupLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 10, // 10 accounts per hour per IP
+  max: 20, // 20 accounts per hour per IP
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     success: false,
     error: 'RATE_LIMIT_SIGNUP',
@@ -50,9 +53,10 @@ const signupLimiter = rateLimit({
  */
 const emailActionLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // max 5 requests per 15 min
+  max: 10, // max 10 requests per 15 min
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     success: false,
     error: 'RATE_LIMIT_EMAIL',
@@ -68,6 +72,7 @@ const bidLimiter = rateLimit({
   max: 5, // max 5 bids per second per IP
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
   message: {
     success: false,
     error: 'RATE_LIMIT_BID',
