@@ -5,28 +5,28 @@ const Badge = ({ status, size = 'sm', className = '' }) => {
 
   const config = {
     LIVE: {
-      label: 'LIVE',
-      classes: 'bg-red-500/10 text-red-400 border-red-500/40 animate-pulse',
-      dot: 'bg-red-500',
+      label: 'LIVE NOW',
+      classes: 'bg-red-500/20 text-red-300 border-red-500/60 shadow-[0_0_14px_rgba(239,68,68,0.35)]',
+      dot: 'bg-red-500 animate-ping',
     },
     OPEN: {
-      label: 'OPEN',
-      classes: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+      label: 'OPEN FOR ENTRY',
+      classes: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.25)]',
       dot: 'bg-emerald-400',
     },
     UPCOMING: {
-      label: 'UPCOMING',
-      classes: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-      dot: 'bg-blue-400',
+      label: 'UPCOMING DROP',
+      classes: 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.25)]',
+      dot: 'bg-amber-400',
     },
     FULL: {
       label: '100/100 FULL',
-      classes: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-      dot: 'bg-amber-400',
+      classes: 'bg-purple-500/20 text-purple-300 border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.25)]',
+      dot: 'bg-purple-400',
     },
     ENDED: {
-      label: 'ENDED',
-      classes: 'bg-gray-700/30 text-gray-400 border-gray-600/30',
+      label: 'AUCTION ENDED',
+      classes: 'bg-gray-800/80 text-gray-400 border-gray-700/60',
     },
     PAYMENT_PENDING: {
       label: 'PAYMENT PENDING',
@@ -91,7 +91,7 @@ const Badge = ({ status, size = 'sm', className = '' }) => {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border tracking-wider uppercase font-medium ${current.classes} ${sizeClasses} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border tracking-widest uppercase font-bold backdrop-blur-md shadow-sm ${current.classes} ${sizeClasses} ${className}`}
     >
       {current.dot && <span className={`w-1.5 h-1.5 rounded-full ${current.dot}`}></span>}
       {current.label}

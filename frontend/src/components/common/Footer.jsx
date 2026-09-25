@@ -4,47 +4,50 @@ import { ShieldCheck, Award, Lock, Zap } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-luxury-border/60 bg-luxury-charcoal/70 text-gray-400 text-sm mt-20">
+    <footer className="border-t border-luxury-border/60 bg-[#060608] text-gray-400 text-sm mt-20 relative overflow-hidden">
+      {/* Top Ambient Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-luxury-gold/50 to-transparent"></div>
+
       {/* Trust Badges */}
-      <div className="border-b border-luxury-border/40 py-6 sm:py-8 bg-luxury-surface/30">
+      <div className="border-b border-luxury-border/40 py-8 bg-[#090A0F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 shrink-0">
+          <div className="royal-card p-3 sm:p-4 rounded-xl flex items-center gap-2.5 sm:gap-3.5">
+            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/30 shrink-0 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <Award className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <p className="font-bold text-white text-[11px] sm:text-xs tracking-wider uppercase">100 Collectors Cap</p>
-              <p className="text-[10px] sm:text-[11px] text-gray-400">Strictly limited seats per drop</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">Strictly limited seats per drop</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 shrink-0">
+          <div className="royal-card p-3 sm:p-4 rounded-xl flex items-center gap-2.5 sm:gap-3.5">
+            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/30 shrink-0 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <p className="font-bold text-white text-[11px] sm:text-xs tracking-wider uppercase">Real-Time Bidding</p>
-              <p className="text-[10px] sm:text-[11px] text-gray-400">Authoritative ₹10 increments</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">Authoritative ₹10 increments</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 shrink-0">
+          <div className="royal-card p-3 sm:p-4 rounded-xl flex items-center gap-2.5 sm:gap-3.5">
+            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/30 shrink-0 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <p className="font-bold text-white text-[11px] sm:text-xs tracking-wider uppercase">Guaranteed Genuine</p>
-              <p className="text-[10px] sm:text-[11px] text-gray-400">100% verified archival luxury</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">100% verified archival luxury</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20 shrink-0">
+          <div className="royal-card p-3 sm:p-4 rounded-xl flex items-center gap-2.5 sm:gap-3.5">
+            <div className="p-2 sm:p-2.5 rounded-lg bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/30 shrink-0 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <p className="font-bold text-white text-[11px] sm:text-xs tracking-wider uppercase">Razorpay Secured</p>
-              <p className="text-[10px] sm:text-[11px] text-gray-400">256-bit encrypted checkout</p>
+              <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">256-bit encrypted checkout</p>
             </div>
           </div>
         </div>
@@ -53,12 +56,12 @@ const Footer = () => {
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded bg-luxury-surface border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold">
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold/50 flex items-center justify-center font-display font-black text-luxury-gold shadow-[0_0_15px_rgba(212,175,55,0.2)]">
               G
             </div>
             <span className="font-display font-black text-xl tracking-[0.2em] text-white">
-              GENZ<span className="text-luxury-gold">STYLE</span>
+              GENZ<span className="luxury-text-gold">STYLE</span>
             </span>
           </div>
           <p className="text-xs text-gray-400 leading-relaxed max-w-sm mb-4">

@@ -70,56 +70,65 @@ const Navbar = () => {
       <header className="sticky top-0 z-40 glass-nav border-b border-luxury-border/60">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
           {/* Logo & Brand */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg bg-luxury-surface border border-luxury-gold/40 flex items-center justify-center font-display font-black text-luxury-gold text-base sm:text-xl shadow-luxury-gold group-hover:border-luxury-gold transition-colors shrink-0">
-              G
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+            <div className="relative">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold/50 flex items-center justify-center font-display font-black text-luxury-gold text-base sm:text-xl shadow-[0_0_15px_rgba(212,175,55,0.25)] group-hover:border-luxury-gold group-hover:shadow-[0_0_24px_rgba(212,175,55,0.5)] transition-all shrink-0">
+                G
+              </div>
+              <div className="absolute -inset-0.5 rounded-xl bg-luxury-gold/30 blur-sm opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none -z-10"></div>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-black text-base sm:text-xl md:text-2xl tracking-[0.15em] sm:tracking-[0.2em] text-white flex items-center">
-                GENZ<span className="text-luxury-gold">STYLE</span>
+              <span className="font-display font-black text-base sm:text-xl md:text-2xl tracking-[0.16em] sm:tracking-[0.22em] text-white flex items-center leading-none">
+                GENZ<span className="luxury-text-gold">STYLE</span>
               </span>
-              <span className="hidden xs:block text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] text-gray-400 uppercase -mt-0.5 sm:-mt-1 font-medium">
-                Limited &bull; Competitive &bull; Yours
+              <span className="hidden xs:block text-[8px] sm:text-[9px] md:text-[9.5px] tracking-[0.2em] sm:tracking-[0.28em] text-luxury-gold/75 uppercase mt-1 font-semibold">
+                Haute Private Auctions &bull; Est. 2026
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider">
             <Link
               to="/auctions"
-              className={`transition-colors tracking-wide ${
-                isActive('/auctions') ? 'text-luxury-gold font-semibold' : 'text-gray-300 hover:text-white'
+              className={`transition-colors py-1 relative ${
+                isActive('/auctions')
+                  ? 'text-luxury-gold font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-luxury-gold after:shadow-[0_0_8px_#D4AF37]'
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
-              Drops
+              Exclusive Drops
             </Link>
             <Link
               to="/my-auctions"
-              className={`transition-colors tracking-wide ${
-                isActive('/my-auctions') ? 'text-luxury-gold font-semibold' : 'text-gray-300 hover:text-white'
+              className={`transition-colors py-1 relative ${
+                isActive('/my-auctions')
+                  ? 'text-luxury-gold font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-luxury-gold after:shadow-[0_0_8px_#D4AF37]'
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
-              My Auctions
+              My Bids
             </Link>
             <Link
               to="/orders"
-              className={`transition-colors tracking-wide ${
-                isActive('/orders') ? 'text-luxury-gold font-semibold' : 'text-gray-300 hover:text-white'
+              className={`transition-colors py-1 relative ${
+                isActive('/orders')
+                  ? 'text-luxury-gold font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-luxury-gold after:shadow-[0_0_8px_#D4AF37]'
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
               Orders
             </Link>
             <Link
               to="/membership"
-              className={`flex items-center gap-1.5 transition-colors tracking-wide px-3 py-1 rounded-full border ${
+              className={`flex items-center gap-1.5 transition-all tracking-wider px-3.5 py-1.5 rounded-full border text-[11px] font-bold ${
                 hasActiveMembership
-                  ? 'border-emerald-500/40 text-emerald-400 bg-emerald-950/20'
-                  : 'border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold/10'
+                  ? 'border-emerald-500/50 text-emerald-400 bg-emerald-950/30 shadow-[0_0_12px_rgba(16,185,129,0.2)]'
+                  : 'border-luxury-gold/50 text-luxury-gold bg-luxury-gold/10 hover:bg-luxury-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.2)]'
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>{hasActiveMembership ? 'VIP Active' : 'Membership ₹49'}</span>
+              <span>{hasActiveMembership ? 'VIP ACTIVE' : 'VIP PASS ₹49'}</span>
             </Link>
           </nav>
 
@@ -278,13 +287,13 @@ const Navbar = () => {
               <div className="flex items-center gap-1.5 xs:gap-3 shrink-0">
                 <Link
                   to="/login"
-                  className="text-xs sm:text-sm text-gray-300 hover:text-white font-medium px-2 sm:px-3 py-1.5 transition whitespace-nowrap"
+                  className="text-xs sm:text-sm text-gray-300 hover:text-white font-medium px-2.5 sm:px-3.5 py-1.5 transition whitespace-nowrap"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/signup"
-                  className="text-[11px] sm:text-xs md:text-sm bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-bold px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:brightness-110 transition shadow-luxury-gold whitespace-nowrap"
+                  className="text-[11px] sm:text-xs md:text-sm luxury-gradient-gold text-black font-extrabold px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl hover:brightness-110 transition shadow-[0_0_20px_rgba(212,175,55,0.3)] whitespace-nowrap luxury-shimmer-btn tracking-wide"
                 >
                   <span className="hidden xs:inline">Join Drop Club</span>
                   <span className="xs:hidden">Join</span>

@@ -51,33 +51,33 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative pt-10 pb-16 sm:pt-16 sm:pb-24 md:pt-20 md:pb-32 overflow-hidden border-b border-luxury-border/60">
+      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-28 md:pt-24 md:pb-36 overflow-hidden border-b border-luxury-border/60 royal-spotlight">
         {/* Background Ambient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[600px] max-w-full h-[350px] bg-luxury-gold/10 blur-[130px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[700px] max-w-full h-[400px] bg-luxury-gold/15 blur-[150px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* Eyebrow Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-luxury-gold/40 bg-luxury-gold/10 text-luxury-gold text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in max-w-full">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Strictly 100 Collectors Per Drop</span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-luxury-gold/50 bg-luxury-gold/10 text-luxury-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-8 animate-fade-in shadow-[0_0_20px_rgba(212,175,55,0.2)] max-w-full">
+            <Sparkles className="w-3.5 h-3.5 shrink-0 text-luxury-gold" />
+            <span className="truncate">EST. 2026 &bull; STRICTLY 100 VERIFIED COLLECTORS PER DROP</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase font-display leading-[0.95] mb-6">
+          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-0.03em] text-white uppercase leading-[0.93] mb-6">
             TOMORROW’S <br />
             <span className="luxury-text-gold">100 AUCTIONS</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-lg md:text-xl text-gray-300 font-medium tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
-            Join today. Bid tomorrow. Archival fashion and luxury drops accessible only to 100 verified collectors with authoritative ₹10 increments.
+          <p className="text-sm sm:text-lg md:text-xl text-gray-300 font-normal tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2 leading-relaxed">
+            Join today. Bid tomorrow. Archival street luxury and authenticated designer drops accessible only to 100 verified collectors with atomic ₹10 bid increments.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none">
             <Link
               to="/auctions"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-7 sm:px-9 py-4 rounded-xl bg-luxury-gradient-gold text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 transition shadow-luxury-gold flex items-center justify-center gap-2.5 luxury-shimmer-btn"
             >
               <span>EXPLORE ALL DROPS</span>
               <ArrowRight className="w-4 h-4" />
@@ -86,45 +86,87 @@ const Home = () => {
             {!hasActiveMembership && (
               <Link
                 to="/membership"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-luxury-gold/50 text-luxury-gold hover:bg-luxury-gold/10 font-bold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 sm:px-9 py-4 rounded-xl border border-luxury-gold/50 text-luxury-gold hover:bg-luxury-gold/10 font-bold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 backdrop-blur-sm"
               >
-                <span>ACTIVATE VIP — ₹49</span>
+                <span>ACTIVATE VIP — ₹49/YR</span>
               </Link>
             )}
           </div>
 
           {/* Key Rule Indicators */}
-          <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto pt-8 sm:pt-10 border-t border-luxury-border/60">
-            <div className="p-3 sm:p-4 rounded-xl bg-luxury-surface/50 border border-luxury-border/60 text-left">
-              <span className="text-[9px] sm:text-[10px] text-luxury-gold font-bold uppercase tracking-widest block">
-                Rule 01
+          <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-5xl mx-auto pt-8 sm:pt-10 border-t border-luxury-border/60">
+            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
+              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+                RULE 01
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">100 Cap</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Strict limit atomically reserved per drop</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">100 Seat Cap</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Strict cap atomically locked per drop room</p>
             </div>
 
-            <div className="p-3 sm:p-4 rounded-xl bg-luxury-surface/50 border border-luxury-border/60 text-left">
-              <span className="text-[9px] sm:text-[10px] text-luxury-gold font-bold uppercase tracking-widest block">
-                Rule 02
+            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
+              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+                RULE 02
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">+₹10 Increment</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Fast, competitive server-verified clicks</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">+₹10 Increment</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Ultra-fast real-time server verified bidding</p>
             </div>
 
-            <div className="p-3 sm:p-4 rounded-xl bg-luxury-surface/50 border border-luxury-border/60 text-left">
-              <span className="text-[9px] sm:text-[10px] text-luxury-gold font-bold uppercase tracking-widest block">
-                Rule 03
+            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
+              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+                RULE 03
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">48-Hr Checkout</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Winners settle within 48h or drop defaults</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">48-Hr Settle</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">Winner checkout window or item rolls over</p>
             </div>
 
-            <div className="p-3 sm:p-4 rounded-xl bg-luxury-surface/50 border border-luxury-border/60 text-left">
-              <span className="text-[9px] sm:text-[10px] text-luxury-gold font-bold uppercase tracking-widest block">
-                Rule 04
+            <div className="royal-card p-4 sm:p-5 rounded-2xl luxury-card-hover text-left">
+              <span className="text-[10px] text-luxury-gold font-bold uppercase tracking-widest block font-mono">
+                RULE 04
               </span>
-              <h4 className="font-bold text-white text-xs sm:text-sm mt-1">₹49 Annual Pass</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">365 days of full drop room access</p>
+              <h4 className="font-bold text-white text-xs sm:text-sm mt-1.5">₹49 Annual Pass</h4>
+              <p className="text-[11px] text-gray-400 mt-1 leading-snug">365 days of unrestricted drop access</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROYAL VIP PROVENANCE BAR */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
+        <div className="royal-card rounded-2xl p-4 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-luxury-border/50 shadow-2xl">
+          <div className="flex items-center gap-3 pt-2 sm:pt-0">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Provenance</div>
+              <div className="text-xs sm:text-sm font-bold text-white">100% Authenticated</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Exclusivity</div>
+              <div className="text-xs sm:text-sm font-bold text-white">Strict 100 Seat Cap</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+              <Gavel className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Fair Bidding</div>
+              <div className="text-xs sm:text-sm font-bold text-white">₹10 Atomic Step</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 pt-3 sm:pt-0 sm:pl-4">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold shrink-0 shadow-sm">
+              <Award className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-widest text-luxury-gold font-bold">Delivery</div>
+              <div className="text-xs sm:text-sm font-bold text-white">Mumbai Hand Concierge</div>
             </div>
           </div>
         </div>
@@ -191,37 +233,46 @@ const Home = () => {
       </section>
 
       {/* HOW IT WORKS BANNER */}
-      <section className="bg-luxury-charcoal/60 border-y border-luxury-border/60 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-luxury-charcoal/40 border-y border-luxury-border/60 py-20 relative overflow-hidden royal-spotlight">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase font-display mb-4">
-              WHY GENZSTYLE IS DIFFERENT
+            <div className="text-[10px] sm:text-xs font-bold tracking-[0.25em] text-luxury-gold uppercase mb-3 font-mono">
+              THE PRIVATE ARCHIVE ADVANTAGE
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase font-display mb-4">
+              WHY <span className="luxury-text-gold">GENZSTYLE</span> IS DIFFERENT
             </h2>
-            <p className="text-sm text-gray-400 leading-relaxed mb-10">
-              Traditional auctions let bots bid millions in fractions of a second. GENZSTYLE guarantees fair, thrilling human competition by capping every auction at 100 real participants with strict ₹10 bid increments.
+            <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-12">
+              Traditional auctions let bots outbid collectors in milliseconds. GENZSTYLE guarantees pure human thrill by restricting every drop room to strictly 100 verified collectors with atomic ₹10 bid increments.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-              <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-                <Users className="w-8 h-8 text-luxury-gold mb-3" />
-                <h4 className="font-bold text-white text-base mb-1">100 Participants Max</h4>
+              <div className="royal-card p-6 sm:p-7 rounded-2xl luxury-card-hover">
+                <div className="w-12 h-12 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-4 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                  <Users className="w-6 h-6" />
+                </div>
+                <h4 className="font-bold text-white text-base mb-1.5">100 Participants Max</h4>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Every drop slot is atomically reserved. No infinite waitlists or automated bidding bots.
+                  Every drop room slot is atomically reserved. Zero infinite waitlists or high-frequency automated bots.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-                <Gavel className="w-8 h-8 text-luxury-gold mb-3" />
-                <h4 className="font-bold text-white text-base mb-1">Authoritative ₹10 Increments</h4>
+              <div className="royal-card p-6 sm:p-7 rounded-2xl luxury-card-hover">
+                <div className="w-12 h-12 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-4 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                  <Gavel className="w-6 h-6" />
+                </div>
+                <h4 className="font-bold text-white text-base mb-1.5">Authoritative ₹10 Increments</h4>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  No crazy price leaps. Bidding advances in predictable ₹10 steps calculated exclusively server-side.
+                  No sudden predatory price jumps. Bidding advances in predictable ₹10 steps verified strictly server-side.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-                <Award className="w-8 h-8 text-luxury-gold mb-3" />
-                <h4 className="font-bold text-white text-base mb-1">100% Genuine Provenance</h4>
+              <div className="royal-card p-6 sm:p-7 rounded-2xl luxury-card-hover">
+                <div className="w-12 h-12 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-4 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                  <Award className="w-6 h-6" />
+                </div>
+                <h4 className="font-bold text-white text-base mb-1.5">100% Genuine Provenance</h4>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Every jacket, sneaker, and archive accessory is verified and authenticated before entering a drop.
+                  Every designer piece and archival accessory is individually inspected and authenticated before drop staging.
                 </p>
               </div>
             </div>

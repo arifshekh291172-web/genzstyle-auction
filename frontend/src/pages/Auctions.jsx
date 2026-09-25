@@ -71,41 +71,46 @@ const Auctions = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
       {/* Header & Search */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-luxury-border/60">
-        <div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white uppercase font-display">
-            ALL EXCLUSIVE DROPS
-          </h1>
-          <p className="text-xs md:text-sm text-gray-400 mt-1">
-            Limited to 100 collectors per room. Strictly authoritative ₹10 increments.
-          </p>
-        </div>
+      <div className="relative rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border border-luxury-gold/20 royal-card royal-spotlight overflow-hidden shadow-2xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-luxury-gold/40 bg-luxury-gold/10 text-luxury-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">
+              <span>ARCHIVAL &bull; LIMITED &bull; STRICT 100 SEATS</span>
+            </div>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white uppercase font-display tracking-tight">
+              EXCLUSIVE <span className="luxury-text-gold">DROPS</span>
+            </h1>
+            <p className="text-xs sm:text-sm text-gray-300 mt-2 max-w-xl leading-relaxed">
+              Reserved for 100 verified collectors per room. Atomic ₹10 increments, authenticated provenance, and zero bots.
+            </p>
+          </div>
 
-        {/* Search Bar */}
-        <form onSubmit={handleSearchSubmit} className="relative w-full md:w-80">
-          <input
-            type="text"
-            placeholder="Search by brand, item, or style ID..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-luxury-surface border border-luxury-border/80 rounded-xl px-4 py-2.5 pl-10 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold transition"
-          />
-          <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-        </form>
+          {/* Search Bar */}
+          <form onSubmit={handleSearchSubmit} className="relative w-full md:w-88 shrink-0">
+            <input
+              type="text"
+              placeholder="Search by designer, style ID, silhouette..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-[#0A0B10]/90 border border-luxury-gold/30 rounded-xl px-4 py-3 pl-10 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-luxury-gold focus:ring-1 focus:ring-luxury-gold/30 transition shadow-inner"
+            />
+            <Search className="w-4 h-4 text-luxury-gold/80 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          </form>
+        </div>
       </div>
 
       {/* Filter Tabs Row */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 py-4 sm:py-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 py-3 sm:py-4 mb-4">
         {/* Status Filters */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none w-auto max-w-full">
           {statuses.map((s) => (
             <button
               key={s.value}
               onClick={() => setSelectedStatus(s.value)}
-              className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold tracking-wider uppercase transition flex items-center gap-1.5 shrink-0 ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-1.5 shrink-0 ${
                 selectedStatus === s.value
-                  ? 'bg-luxury-gold text-black shadow-luxury-gold'
-                  : 'bg-luxury-surface text-gray-400 hover:text-white border border-luxury-border/60'
+                  ? 'luxury-gradient-gold text-black shadow-[0_0_18px_rgba(212,175,55,0.4)]'
+                  : 'bg-[#12131C] text-gray-400 hover:text-white border border-luxury-border/60 hover:border-luxury-gold/30'
               }`}
             >
               {s.isLive && <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>}
@@ -120,10 +125,10 @@ const Auctions = () => {
             <button
               key={c}
               onClick={() => setSelectedCategory(c)}
-              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-medium transition shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wide transition shrink-0 ${
                 selectedCategory === c
-                  ? 'text-luxury-gold bg-luxury-gold/10 border border-luxury-gold/30'
-                  : 'text-gray-400 hover:text-white hover:bg-luxury-surface/50'
+                  ? 'text-luxury-gold bg-luxury-gold/15 border border-luxury-gold/40 shadow-[0_0_10px_rgba(212,175,55,0.15)]'
+                  : 'text-gray-400 hover:text-white hover:bg-luxury-surface/50 border border-transparent'
               }`}
             >
               {c}
@@ -131,6 +136,7 @@ const Auctions = () => {
           ))}
         </div>
       </div>
+
 
       {/* Grid of Auctions */}
       {loading ? (

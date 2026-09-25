@@ -5,6 +5,7 @@ import {
   Sparkles,
   ShieldCheck,
   Check,
+  CheckCircle2,
   Zap,
   Clock,
   AlertTriangle,
@@ -191,18 +192,18 @@ const Membership = () => {
       {/* Main Membership Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center max-w-4xl mx-auto">
         {/* Luxury Gold Membership Card (7 cols) */}
-        <div className="md:col-span-7 bg-gradient-to-br from-luxury-surface via-[#181924] to-luxury-card border-2 border-luxury-gold/50 rounded-3xl p-4 xs:p-6 sm:p-8 shadow-luxury-glow relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+        <div className="md:col-span-7 royal-card border-2 border-luxury-gold/50 rounded-3xl p-5 xs:p-7 sm:p-9 shadow-[0_0_35px_rgba(212,175,55,0.2)] relative overflow-hidden flex flex-col justify-between min-h-[400px]">
           {/* Decorative Gold Sheen Background */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-luxury-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-luxury-gold/20 rounded-full blur-3xl pointer-events-none"></div>
 
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-luxury-surface border border-luxury-gold flex items-center justify-center font-display font-black text-luxury-gold text-sm shadow-luxury-gold">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold flex items-center justify-center font-display font-black text-luxury-gold text-sm shadow-[0_0_12px_rgba(212,175,55,0.3)]">
                   G
                 </div>
                 <span className="font-display font-black text-sm tracking-[0.2em] text-white">
-                  GENZ<span className="text-luxury-gold">STYLE</span>
+                  GENZ<span className="luxury-text-gold">STYLE</span>
                 </span>
               </div>
               <Badge status={hasActiveMembership ? 'ACTIVE' : 'INACTIVE'} size="sm" />
@@ -213,7 +214,7 @@ const Membership = () => {
                 ANNUAL COLLECTOR PASSPORT
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-display font-black text-3xl xs:text-4xl sm:text-5xl text-white">
+                <span className="font-display font-black text-4xl xs:text-5xl sm:text-6xl text-white font-hero-num">
                   ₹49
                 </span>
                 <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">
@@ -304,7 +305,7 @@ const Membership = () => {
                 <button
                   onClick={handleActivatePayment}
                   disabled={processingPayment || !acceptedTerms}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-luxury-gold via-yellow-400 to-luxury-gold-dark text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 font-display disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="w-full py-4 rounded-xl luxury-gradient-gold text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:brightness-110 active:scale-95 transition shadow-[0_0_24px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2 font-display disabled:opacity-40 disabled:cursor-not-allowed luxury-shimmer-btn"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>
@@ -319,9 +320,9 @@ const Membership = () => {
         </div>
 
         {/* Right Explainer Column (5 cols) */}
-        <div className="md:col-span-5 space-y-6">
-          <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/20 flex items-center justify-center text-luxury-gold mb-3">
+        <div className="md:col-span-5 space-y-5">
+          <div className="p-5 sm:p-6 rounded-2xl royal-card luxury-card-hover">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-3 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h4 className="font-bold text-white text-sm mb-1">
@@ -332,8 +333,8 @@ const Membership = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/20 flex items-center justify-center text-luxury-gold mb-3">
+          <div className="p-5 sm:p-6 rounded-2xl royal-card luxury-card-hover">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-3 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <Clock className="w-5 h-5" />
             </div>
             <h4 className="font-bold text-white text-sm mb-1">
@@ -344,8 +345,8 @@ const Membership = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-luxury-surface border border-luxury-border">
-            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/20 flex items-center justify-center text-luxury-gold mb-3">
+          <div className="p-5 sm:p-6 rounded-2xl royal-card luxury-card-hover">
+            <div className="w-10 h-10 rounded-xl bg-luxury-gold/10 border border-luxury-gold/30 flex items-center justify-center text-luxury-gold mb-3 shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               <Lock className="w-5 h-5" />
             </div>
             <h4 className="font-bold text-white text-sm mb-1">

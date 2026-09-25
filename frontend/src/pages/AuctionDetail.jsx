@@ -261,30 +261,31 @@ const AuctionDetail = () => {
           <ImageGallery images={product.images} productName={product.name} />
 
           {/* Product Specifications & Details */}
-          <div className="bg-luxury-surface/60 border border-luxury-border/80 rounded-2xl p-4 sm:p-6">
-            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 pb-2 border-b border-luxury-border/60">
-              Piece Specification &amp; Provenance
+          <div className="royal-card rounded-2xl p-5 sm:p-7 shadow-2xl">
+            <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-4 pb-3 border-b border-luxury-border/60 flex items-center justify-between">
+              <span>Piece Specification &amp; Provenance</span>
+              <span className="text-[10px] font-bold text-luxury-gold uppercase tracking-widest font-mono">100% Verified</span>
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs mb-4 sm:mb-6">
-              <div>
-                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Brand</span>
-                <span className="font-semibold text-gray-200">{product.brand || 'Luxury'}</span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs mb-5 sm:mb-6">
+              <div className="bg-[#0A0B10]/60 p-2.5 rounded-xl border border-luxury-border/50">
+                <span className="text-gray-500 uppercase text-[9px] block">Brand</span>
+                <span className="font-bold text-white text-xs sm:text-sm">{product.brand || 'Luxury'}</span>
               </div>
-              <div>
-                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Size</span>
-                <span className="font-semibold text-gray-200">{product.size || 'M'}</span>
+              <div className="bg-[#0A0B10]/60 p-2.5 rounded-xl border border-luxury-border/50">
+                <span className="text-gray-500 uppercase text-[9px] block">Size</span>
+                <span className="font-bold text-white text-xs sm:text-sm">{product.size || 'M'}</span>
               </div>
-              <div>
-                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Color</span>
-                <span className="font-semibold text-gray-200">{product.color || 'Black'}</span>
+              <div className="bg-[#0A0B10]/60 p-2.5 rounded-xl border border-luxury-border/50">
+                <span className="text-gray-500 uppercase text-[9px] block">Color</span>
+                <span className="font-bold text-white text-xs sm:text-sm">{product.color || 'Black'}</span>
               </div>
-              <div>
-                <span className="text-gray-500 uppercase text-[9px] sm:text-[10px] block">Condition</span>
-                <span className="font-semibold text-emerald-400">{product.condition || 'Brand New'}</span>
+              <div className="bg-[#0A0B10]/60 p-2.5 rounded-xl border border-luxury-border/50">
+                <span className="text-gray-500 uppercase text-[9px] block">Condition</span>
+                <span className="font-bold text-emerald-400 text-xs sm:text-sm">{product.condition || 'Brand New'}</span>
               </div>
             </div>
 
-            <p className="text-xs text-gray-300 leading-relaxed whitespace-pre-line">
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed whitespace-pre-line">
               {product.description}
             </p>
           </div>
@@ -293,29 +294,29 @@ const AuctionDetail = () => {
         {/* Right Column: Live Bidding Console (5 cols) */}
         <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
           {/* Header Card with Style ID & Name */}
-          <div className="bg-luxury-surface/90 border border-luxury-border rounded-2xl p-4 sm:p-6 shadow-card-dark">
-            <div className="flex items-center justify-between gap-2 mb-2">
+          <div className="royal-card royal-spotlight-sm rounded-2xl p-5 sm:p-7 shadow-2xl">
+            <div className="flex items-center justify-between gap-2 mb-2.5">
               <span className="text-[10px] sm:text-xs font-mono font-bold text-luxury-gold tracking-widest uppercase">
                 STYLE ID: {product.styleId || 'GZS-ARCHIVE'}
               </span>
-              <span className="text-[10px] sm:text-[11px] font-semibold text-gray-400 uppercase">
+              <span className="text-[10px] sm:text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
                 {product.category}
               </span>
             </div>
 
-            <h1 className="text-lg sm:text-2xl font-black text-white leading-tight font-display mb-3 sm:mb-4">
+            <h1 className="text-xl sm:text-3xl font-black text-white leading-tight font-display mb-4">
               {product.name}
             </h1>
 
             {/* Winner Announcement Banner if Ended */}
             {isPendingPayment && (
-              <div className="p-3.5 sm:p-4 rounded-xl bg-luxury-gold/10 border border-luxury-gold/40 text-center mb-4 sm:mb-6 animate-fade-in">
-                <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-luxury-gold mx-auto mb-1" />
-                <h4 className="font-bold text-white text-xs sm:text-sm uppercase tracking-wide">
+              <div className="p-4 rounded-xl bg-luxury-gold/10 border border-luxury-gold/40 text-center mb-5 sm:mb-6 animate-fade-in shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+                <Crown className="w-6 h-6 text-luxury-gold mx-auto mb-1.5" />
+                <h4 className="font-black text-white text-xs sm:text-sm uppercase tracking-wider">
                   DROP CONCLUDED
                 </h4>
                 <p className="text-xs text-gray-300 mt-1">
-                  Winning Bid: <strong className="text-luxury-gold">₹{auction.currentBid.toLocaleString('en-IN')}</strong>
+                  Winning Bid: <strong className="text-luxury-gold font-price text-sm">₹{auction.currentBid.toLocaleString('en-IN')}</strong>
                 </p>
                 <p className="text-[11px] text-gray-400 mt-1">
                   Winner has 48 hours to complete payment.
@@ -324,12 +325,12 @@ const AuctionDetail = () => {
             )}
 
             {/* Real-time Bid & Participant Metric Grid */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 p-3 sm:p-4 rounded-xl bg-luxury-card/70 border border-luxury-border/60 mb-4 sm:mb-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 p-4 rounded-xl bg-[#0D0E16]/80 border border-luxury-gold/25 mb-5 shadow-inner">
               <div>
                 <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
                   {isLive ? 'CURRENT HIGHEST BID' : 'STARTING BID'}
                 </span>
-                <span className="font-display font-black text-lg xs:text-xl md:text-3xl text-white truncate block">
+                <span className="font-display font-black text-xl xs:text-2xl md:text-3xl text-white truncate block font-price">
                   ₹{auction.currentBid.toLocaleString('en-IN')}
                 </span>
               </div>
@@ -338,17 +339,17 @@ const AuctionDetail = () => {
                 <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-400 font-bold block mb-1">
                   COLLECTORS JOINED
                 </span>
-                <span className="font-display font-black text-lg xs:text-xl md:text-3xl text-luxury-gold flex items-center gap-1 sm:gap-1.5 truncate">
-                  <Users className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                <span className="font-display font-black text-xl xs:text-2xl md:text-3xl text-luxury-gold flex items-center gap-1 sm:gap-1.5 truncate auction-num">
+                  <Users className="w-5 h-5 shrink-0" />
                   <span>{participantCount}</span> <span className="text-xs sm:text-sm text-gray-500 font-normal">/ {participantLimit}</span>
                 </span>
               </div>
             </div>
 
             {/* Countdown / Auction Timer */}
-            <div className="p-3 sm:p-3.5 rounded-xl border border-luxury-border/60 bg-luxury-surface flex items-center justify-between mb-4 sm:mb-6 gap-2">
-              <span className="text-[11px] sm:text-xs text-gray-400 uppercase font-semibold flex items-center gap-1.5 truncate">
-                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-luxury-gold shrink-0" />
+            <div className="p-3.5 rounded-xl border border-luxury-gold/25 bg-[#0A0B10]/70 flex items-center justify-between mb-5 gap-2">
+              <span className="text-[11px] sm:text-xs text-gray-300 uppercase font-semibold flex items-center gap-1.5 truncate">
+                <Clock className="w-4 h-4 text-luxury-gold shrink-0" />
                 <span className="truncate">{isLive ? 'Concludes In' : 'Commences In'}</span>
               </span>
               <CountdownTimer
@@ -360,15 +361,15 @@ const AuctionDetail = () => {
             {/* Seat Capacity Progress Bar */}
             <div className="mb-6">
               <div className="flex justify-between items-center text-xs mb-1.5">
-                <span className="text-gray-400 text-[11px]">Strict 100-Seat Cap</span>
+                <span className="text-gray-400 text-[11px] uppercase tracking-wider">Strict 100-Seat Cap</span>
                 <span className="font-bold text-luxury-gold text-[11px]">
                   {Math.min(100, Math.round((participantCount / participantLimit) * 100))}% Capacity
                 </span>
               </div>
-              <div className="w-full bg-luxury-card rounded-full h-2 overflow-hidden">
+              <div className="w-full bg-[#1A1C28] rounded-full h-2.5 overflow-hidden p-0.5 border border-luxury-gold/20">
                 <div
-                  className={`h-full transition-all duration-500 ${
-                    isFull ? 'bg-red-500' : 'bg-gradient-to-r from-luxury-gold to-luxury-gold-dark'
+                  className={`h-full rounded-full transition-all duration-500 ${
+                    isFull ? 'bg-red-500' : 'bg-gradient-to-r from-luxury-gold to-yellow-300 shadow-[0_0_10px_#D4AF37]'
                   }`}
                   style={{
                     width: `${Math.min(100, (participantCount / participantLimit) * 100)}%`,
@@ -388,9 +389,12 @@ const AuctionDetail = () => {
             {/* Desktop Join / Bidding Actions */}
             {!auction.hasJoined ? (
               <div className="space-y-3">
-                <div className="p-3 rounded-xl bg-luxury-gold/5 border border-luxury-gold/20 text-xs text-gray-300">
-                  <p className="font-semibold text-white mb-0.5">Seat Reservation Required</p>
-                  <p className="text-[11px] text-gray-400">
+                <div className="p-3.5 rounded-xl bg-luxury-gold/5 border border-luxury-gold/25 text-xs text-gray-300">
+                  <p className="font-bold text-white mb-0.5 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-luxury-gold" />
+                    Seat Reservation Required
+                  </p>
+                  <p className="text-[11px] text-gray-400 leading-relaxed">
                     To maintain fair competition, only 100 collectors can join this room. Bidding increments are locked at +₹10.
                   </p>
                 </div>
@@ -398,7 +402,7 @@ const AuctionDetail = () => {
                 <button
                   onClick={handleJoin}
                   disabled={joining || isFull || isEnded}
-                  className="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider bg-gradient-to-r from-luxury-gold to-luxury-gold-dark text-black hover:brightness-110 active:scale-95 transition shadow-luxury-gold flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-4 rounded-xl font-extrabold text-sm uppercase tracking-wider luxury-gradient-gold text-black hover:brightness-110 active:scale-95 transition shadow-[0_0_24px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2 disabled:opacity-50 luxury-shimmer-btn"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{joining ? 'RESERVING SEAT...' : isFull ? 'ROOM AT FULL CAPACITY' : 'JOIN THIS DROP'}</span>
