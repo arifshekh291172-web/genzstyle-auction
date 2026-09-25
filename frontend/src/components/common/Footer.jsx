@@ -56,13 +56,12 @@ const Footer = () => {
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold/50 flex items-center justify-center font-display font-black text-luxury-gold shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-              G
-            </div>
-            <span className="font-display font-black text-xl tracking-[0.2em] text-white">
-              GENZ<span className="luxury-text-gold">STYLE</span>
-            </span>
+          <div className="mb-4">
+            <img
+              src="/images/logo.png"
+              alt="GENZSTYLE - Bid Now. Wear Tomorrow."
+              className="h-11 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
+            />
           </div>
           <p className="text-xs text-gray-400 leading-relaxed max-w-sm mb-4">
             India's foremost competitive drop marketplace. Curated luxury street fashion, avant-garde footwear, and rare archival accessories reserved for 100 passionate collectors at a time.

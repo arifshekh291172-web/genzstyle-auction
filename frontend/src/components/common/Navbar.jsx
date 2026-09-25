@@ -70,21 +70,12 @@ const Navbar = () => {
       <header className="sticky top-0 z-40 glass-nav border-b border-luxury-border/60">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
           {/* Logo & Brand */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div className="relative">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold/50 flex items-center justify-center font-display font-black text-luxury-gold text-base sm:text-xl shadow-[0_0_15px_rgba(212,175,55,0.25)] group-hover:border-luxury-gold group-hover:shadow-[0_0_24px_rgba(212,175,55,0.5)] transition-all shrink-0">
-                G
-              </div>
-              <div className="absolute -inset-0.5 rounded-xl bg-luxury-gold/30 blur-sm opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none -z-10"></div>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-black text-base sm:text-xl md:text-2xl tracking-[0.16em] sm:tracking-[0.22em] text-white flex items-center leading-none">
-                GENZ<span className="luxury-text-gold">STYLE</span>
-              </span>
-              <span className="hidden xs:block text-[8px] sm:text-[9px] md:text-[9.5px] tracking-[0.2em] sm:tracking-[0.28em] text-luxury-gold/75 uppercase mt-1 font-semibold">
-                Haute Private Auctions &bull; Est. 2026
-              </span>
-            </div>
+          <Link to="/" className="flex items-center group shrink-0 py-1">
+            <img
+              src="/images/logo.png"
+              alt="GENZSTYLE - Bid Now. Wear Tomorrow."
+              className="h-8 xs:h-9 sm:h-11 md:h-13 w-auto object-contain transition-all duration-300 group-hover:scale-[1.03] filter drop-shadow-[0_2px_14px_rgba(212,175,55,0.25)]"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}

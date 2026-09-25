@@ -198,13 +198,12 @@ const Membership = () => {
 
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-[#1C1E2A] to-[#0A0B10] border border-luxury-gold flex items-center justify-center font-display font-black text-luxury-gold text-sm shadow-[0_0_12px_rgba(212,175,55,0.3)]">
-                  G
-                </div>
-                <span className="font-display font-black text-sm tracking-[0.2em] text-white">
-                  GENZ<span className="luxury-text-gold">STYLE</span>
-                </span>
+              <div className="flex items-center">
+                <img
+                  src="/images/logo.png"
+                  alt="GENZSTYLE"
+                  className="h-9 sm:h-10 w-auto object-contain"
+                />
               </div>
               <Badge status={hasActiveMembership ? 'ACTIVE' : 'INACTIVE'} size="sm" />
             </div>
